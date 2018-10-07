@@ -1,4 +1,8 @@
 #include "SDL2/SDL.h"
+#include "time.h"
+
+const int WIDTH = 640;
+const int HEIGHT = 480;
 
 void move(SDL_Renderer* renderer, int i)
 {
@@ -8,14 +12,25 @@ void move(SDL_Renderer* renderer, int i)
     SDL_RenderDrawLine(renderer, 340 + i, 240, 320 + i, 200);
 }
 
+void drawDots(SDL_Renderer* renderer)
+{
+    SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    for (int i = 0; i < WIDTH; i++)
+    {
+        int rnd = (rand() / (RAND_MAX + 1.0)) * HEIGHT;
+        SDL_RenderDrawPoint(renderer, i, rnd);
+    }
+}
+
 int main(int argc, char* argv[])
 {
+    srand(time(NULL));
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
         
-        if (SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer) == 0)
+        if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
             SDL_bool done = SDL_FALSE;
             int i = 0;
@@ -34,6 +49,8 @@ int main(int argc, char* argv[])
                 
                 move(renderer, i++);
                 if (i > 640) i = 0;
+                
+                drawDots(renderer);
                 
                 SDL_RenderPresent(renderer);
                 
