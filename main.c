@@ -3,11 +3,14 @@
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
+const float SPEED = 10;
 
 struct Vector2
 {
     float x;
-    float y;};
+    float y;
+};
+struct Vector2 pos;
 
 void drawTriangle(SDL_Renderer* renderer, int i)
 {
@@ -38,6 +41,8 @@ void drawDots(SDL_Renderer* renderer)
 
 int main(int argc, char* argv[])
 {
+    pos.x = 0;
+    pos.y = 0;
     srand(time(NULL));
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
@@ -64,13 +69,15 @@ int main(int argc, char* argv[])
                 drawTriangle(renderer, i++);
                 if (i > WIDTH / 2) i = 0;
                 
-                for (int i = 0; i < 100; i++)
-                {
-                    struct Vector2 pos;
-                    pos.x = (rand() / (RAND_MAX + 1.0)) * WIDTH;
-                    pos.y = (rand() / (RAND_MAX + 1.0)) * HEIGHT;
-                    drawSquare(renderer, 100, pos);
-                }
+//                for (int i = 0; i < 100; i++)
+//                {
+//                    struct Vector2 pos;
+//                    pos.x = (rand() / (RAND_MAX + 1.0)) * WIDTH;
+//                    pos.y = (rand() / (RAND_MAX + 1.0)) * HEIGHT;
+//                    drawSquare(renderer, 100, pos);
+//                }
+                
+                drawSquare(renderer, 100, pos);
                 
                 drawDots(renderer);
                 
@@ -78,9 +85,34 @@ int main(int argc, char* argv[])
                 
                 while (SDL_PollEvent(&event))
                 {
-                    if (event.type == SDL_QUIT)
+                    switch (event.type)
                     {
-                        done = SDL_TRUE;
+                        case SDL_KEYDOWN:
+                            if (event.key.keysym.sym == SDLK_w)
+                            {
+                                pos.y -= SPEED;
+                            }
+                            if (event.key.keysym.sym == SDLK_a)
+                            {
+                                pos.x -= SPEED;
+                            }
+                            if (event.key.keysym.sym == SDLK_s)
+                            {
+                                pos.y += SPEED;
+                            }
+                            if (event.key.keysym.sym == SDLK_d)
+                            {
+                                pos.x += SPEED;
+                            }
+                            break;
+                        case SDL_KEYUP:
+                            break;
+                        case SDL_QUIT:
+                            done = SDL_TRUE;
+                            break;
+                            
+                        default:
+                            break;
                     }
                 }
             }
