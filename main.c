@@ -1,9 +1,10 @@
 #include "SDL2/SDL.h"
 #include "time.h"
+#include "stdbool.h"
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
-const float SPEED = 10;
+const float SPEED = 1;
 
 struct Vector2
 {
@@ -44,6 +45,11 @@ int main(int argc, char* argv[])
     pos.x = 0;
     pos.y = 0;
     srand(time(NULL));
+    
+    bool goUp = false;
+    bool goLeft = false;
+    bool goDown = false;
+    bool goRight = false;
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
         SDL_Window* window = NULL;
@@ -90,31 +96,55 @@ int main(int argc, char* argv[])
                         case SDL_KEYDOWN:
                             if (event.key.keysym.sym == SDLK_w)
                             {
-                                pos.y -= SPEED;
+                                goUp = true;
                             }
                             if (event.key.keysym.sym == SDLK_a)
                             {
-                                pos.x -= SPEED;
+                                goLeft = true;
                             }
                             if (event.key.keysym.sym == SDLK_s)
                             {
-                                pos.y += SPEED;
+                                goDown = true;
                             }
                             if (event.key.keysym.sym == SDLK_d)
                             {
-                                pos.x += SPEED;
+                                goRight = true;
                             }
                             break;
                         case SDL_KEYUP:
+                            if (event.key.keysym.sym == SDLK_w)
+                            {
+                                goUp = false;
+                            }
+                            if (event.key.keysym.sym == SDLK_a)
+                            {
+                                goLeft = false;
+                            }
+                            if (event.key.keysym.sym == SDLK_s)
+                            {
+                                goDown = false;
+                            }
+                            if (event.key.keysym.sym == SDLK_d)
+                            {
+                                goRight = false;
+                            }
                             break;
                         case SDL_QUIT:
                             done = SDL_TRUE;
                             break;
-                            
                         default:
                             break;
                     }
                 }
+                
+                if (goUp)
+                    pos.y -= SPEED;
+                if (goLeft)
+                    pos.x -= SPEED;
+                if (goDown)
+                    pos.y += SPEED;
+                if (goRight)
+                    pos.x += SPEED;
             }
         }
         
