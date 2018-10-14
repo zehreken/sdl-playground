@@ -1,24 +1,13 @@
 #include "SDL2/SDL.h"
 #include "time.h"
 #include "stdbool.h"
+#include "primitives.h"
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
 const float SPEED = 1;
 
-struct Vector2
-{
-    float x;
-    float y;
-} Vector2;
-struct Vector2 pos;
-
-struct Box2D
-{
-    struct Vector2 position;
-    struct Vector2 size;
-};
-struct Box2D a, b;
+Box2D a, b;
 
 void drawTriangle(SDL_Renderer* renderer, int i)
 {
@@ -28,20 +17,11 @@ void drawTriangle(SDL_Renderer* renderer, int i)
     SDL_RenderDrawLine(renderer, 340 + i, 240, 320 + i, 200);
 }
 
-void drawSquare(SDL_Renderer* renderer, int size, struct Vector2 pos)
+void drawBox(SDL_Renderer* renderer, Box2D box2D)
 {
     SDL_SetRenderDrawColor(renderer, 255, 0, 55, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawLine(renderer, pos.x - size / 2, pos.y - size / 2, pos.x - size / 2, pos.y + size / 2); // left
-    SDL_RenderDrawLine(renderer, pos.x - size / 2, pos.y - size / 2, pos.x + size / 2, pos.y - size / 2); // top
-    SDL_RenderDrawLine(renderer, pos.x + size / 2, pos.y - size / 2, pos.x + size / 2, pos.y + size / 2); // right
-    SDL_RenderDrawLine(renderer, pos.x - size / 2, pos.y + size / 2, pos.x + size / 2, pos.y + size / 2); // bottom
-}
-
-void drawBox(SDL_Renderer* renderer, struct Box2D box2D)
-{
-    SDL_SetRenderDrawColor(renderer, 255, 0, 55, SDL_ALPHA_OPAQUE);
-    struct Vector2 pos = box2D.position;
-    struct Vector2 size = box2D.size;
+    IntVector2 pos = box2D.position;
+    IntVector2 size = box2D.size;
     SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x - size.x / 2, pos.y + size.y / 2); // left
     SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y - size.y / 2); // top
     SDL_RenderDrawLine(renderer, pos.x + size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2); // right
@@ -60,8 +40,6 @@ void drawDots(SDL_Renderer* renderer)
 
 int main(int argc, char* argv[])
 {
-    pos.x = 0;
-    pos.y = 0;
     srand(time(NULL));
     
     bool goUp = false;
@@ -96,8 +74,6 @@ int main(int argc, char* argv[])
                 
                 drawTriangle(renderer, i++);
                 if (i > WIDTH / 2) i = 0;
-                
-                drawSquare(renderer, 100, pos);
                 
                 drawBox(renderer, a);
                 drawBox(renderer, b);
@@ -155,13 +131,13 @@ int main(int argc, char* argv[])
                 }
                 
                 if (goUp)
-                    pos.y -= SPEED;
+                    a.position.y -= SPEED;
                 if (goLeft)
-                    pos.x -= SPEED;
+                    a.position.x -= SPEED;
                 if (goDown)
-                    pos.y += SPEED;
+                    a.position.y += SPEED;
                 if (goRight)
-                    pos.x += SPEED;
+                    a.position.x += SPEED;
             }
         }
         

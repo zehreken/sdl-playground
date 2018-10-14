@@ -2,5 +2,4 @@
 #define COLLISION_H
 
 
-
 #endif
