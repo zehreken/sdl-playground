@@ -19,9 +19,10 @@ void drawTriangle(SDL_Renderer* renderer, int i)
 
 void drawBox(SDL_Renderer* renderer, Box2D box2D)
 {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 55, SDL_ALPHA_OPAQUE);
     IntVector2 pos = box2D.position;
     IntVector2 size = box2D.size;
+    ColorRGB color = box2D.color;
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
     SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x - size.x / 2, pos.y + size.y / 2); // left
     SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y - size.y / 2); // top
     SDL_RenderDrawLine(renderer, pos.x + size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2); // right
@@ -49,6 +50,8 @@ int main(int argc, char* argv[])
     
     a.position.x = a.position.y = b.position.x = b.position.y = 300;
     a.size.x = a.size.y = b.size.x = b.size.y = 100;
+    a.color.r = 255;
+    b.color.b = 255;
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
