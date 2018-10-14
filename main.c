@@ -39,6 +39,23 @@ void drawDots(SDL_Renderer* renderer)
     }
 }
 
+void solveCollision()
+{
+    if (a.position.x < b.position.x + b.size.x &&
+        a.position.x + a.size.x > b.position.x &&
+        a.position.y < b.position.y + b.size.y &&
+        a.position.y + a.size.y > b.position.y)
+    {
+        a.color.r = b.color.r = 255;
+        a.color.g = a.color.b = b.color.g = b.color.b = 0;
+    }
+    else
+    {
+        a.color.r = a.color.b = b.color.r = b.color.b = 0;
+        a.color.g = b.color.g = 255;
+    }
+}
+
 int main(int argc, char* argv[])
 {
     srand(time(NULL));
@@ -141,6 +158,8 @@ int main(int argc, char* argv[])
                     a.position.y += SPEED;
                 if (goRight)
                     a.position.x += SPEED;
+                
+                solveCollision();
             }
         }
         
