@@ -10,8 +10,15 @@ struct Vector2
 {
     float x;
     float y;
-};
+} Vector2;
 struct Vector2 pos;
+
+struct Box2D
+{
+    struct Vector2 position;
+    struct Vector2 size;
+};
+struct Box2D a, b;
 
 void drawTriangle(SDL_Renderer* renderer, int i)
 {
@@ -28,6 +35,17 @@ void drawSquare(SDL_Renderer* renderer, int size, struct Vector2 pos)
     SDL_RenderDrawLine(renderer, pos.x - size / 2, pos.y - size / 2, pos.x + size / 2, pos.y - size / 2); // top
     SDL_RenderDrawLine(renderer, pos.x + size / 2, pos.y - size / 2, pos.x + size / 2, pos.y + size / 2); // right
     SDL_RenderDrawLine(renderer, pos.x - size / 2, pos.y + size / 2, pos.x + size / 2, pos.y + size / 2); // bottom
+}
+
+void drawBox(SDL_Renderer* renderer, struct Box2D box2D)
+{
+    SDL_SetRenderDrawColor(renderer, 255, 0, 55, SDL_ALPHA_OPAQUE);
+    struct Vector2 pos = box2D.position;
+    struct Vector2 size = box2D.size;
+    SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x - size.x / 2, pos.y + size.y / 2); // left
+    SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y - size.y / 2); // top
+    SDL_RenderDrawLine(renderer, pos.x + size.x / 2, pos.y - size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2); // right
+    SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y + size.y / 2, pos.x + size.x / 2, pos.y + size.y / 2); // bottom
 }
 
 void drawDots(SDL_Renderer* renderer)
@@ -50,6 +68,10 @@ int main(int argc, char* argv[])
     bool goLeft = false;
     bool goDown = false;
     bool goRight = false;
+    
+    a.position.x = a.position.y = b.position.x = b.position.y = 300;
+    a.size.x = a.size.y = b.size.x = b.size.y = 100;
+    
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
         SDL_Window* window = NULL;
@@ -75,15 +97,10 @@ int main(int argc, char* argv[])
                 drawTriangle(renderer, i++);
                 if (i > WIDTH / 2) i = 0;
                 
-//                for (int i = 0; i < 100; i++)
-//                {
-//                    struct Vector2 pos;
-//                    pos.x = (rand() / (RAND_MAX + 1.0)) * WIDTH;
-//                    pos.y = (rand() / (RAND_MAX + 1.0)) * HEIGHT;
-//                    drawSquare(renderer, 100, pos);
-//                }
-                
                 drawSquare(renderer, 100, pos);
+                
+                drawBox(renderer, a);
+                drawBox(renderer, b);
                 
                 drawDots(renderer);
                 
