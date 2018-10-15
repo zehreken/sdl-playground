@@ -2,6 +2,7 @@
 #include "time.h"
 #include "stdbool.h"
 #include "primitives.h"
+#include "source/time.h"
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
