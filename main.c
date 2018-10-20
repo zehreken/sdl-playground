@@ -47,6 +47,7 @@ void solveCollision()
         a.position.y < b.position.y + b.size.y &&
         a.position.y + a.size.y > b.position.y)
     {
+	// There is collision
         a.color.r = b.color.r = 255;
         a.color.g = a.color.b = b.color.g = b.color.b = 0;
     }
