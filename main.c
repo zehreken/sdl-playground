@@ -77,11 +77,18 @@ int main(int argc, char* argv[])
     {
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
-        TTF_Init();
-        TTF_Font *gFont = TTF_OpenFont("Fonts/FreeSans.ttf", 25);
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
+            
+            if (TTF_Init() == -1)
+                printf("error");
+            TTF_Font* font = TTF_OpenFont("Fonts/FreeSans.ttf", 25);
+            if (!font)
+                printf("font loading error");
+            SDL_Color color = { 255, 0, 255, 255 };
+            SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing testing testing testing", color);
+            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
             SDL_bool done = SDL_FALSE;
             int i = 0;
             
@@ -105,6 +112,7 @@ int main(int argc, char* argv[])
                 
                 drawDots(renderer);
                 
+                SDL_RenderCopy(renderer, texture, NULL, NULL);
                 SDL_RenderPresent(renderer);
                 
                 while (SDL_PollEvent(&event))
@@ -166,6 +174,8 @@ int main(int argc, char* argv[])
                 
                 solveCollision();
             }
+            
+            TTF_CloseFont(font);
         }
         
         if (renderer)
@@ -177,6 +187,7 @@ int main(int argc, char* argv[])
             SDL_DestroyWindow(window);
         }
     }
+
     TTF_Quit();
     SDL_Quit();
     return 0;
