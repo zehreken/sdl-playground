@@ -77,6 +77,8 @@ int main(int argc, char* argv[])
     {
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
+        TTF_Init();
+        TTF_Font *gFont = TTF_OpenFont("Fonts/FreeSans.ttf", 25);
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
@@ -175,6 +177,7 @@ int main(int argc, char* argv[])
             SDL_DestroyWindow(window);
         }
     }
+    TTF_Quit();
     SDL_Quit();
     return 0;
 }
