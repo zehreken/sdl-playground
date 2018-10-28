@@ -83,10 +83,10 @@ int main(int argc, char* argv[])
             
             if (TTF_Init() == -1)
                 printf("error");
-            TTF_Font* font = TTF_OpenFont("Fonts/FreeSans.ttf", 16);
+            TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
             if (!font)
                 printf("font loading error");
-            SDL_Color color = { 255, 0, 255, 255 };
+            SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing testing testing testing", color);
             SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
             SDL_Rect textRect;
