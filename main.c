@@ -3,6 +3,7 @@
 #include "stdbool.h"
 #include "primitives.h"
 #include "source/time.h"
+#include "SDL2_ttf/SDL_ttf.h"
 
 const int WIDTH = 640;
 const int HEIGHT = 480;
