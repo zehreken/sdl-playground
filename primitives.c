@@ -1,5 +1,5 @@
 #include "primitives.h"
-#include "config.h"
+#include "constants.h"
 
 void drawTriangle(SDL_Renderer* renderer, int i)
 {

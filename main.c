@@ -4,7 +4,7 @@
 #include "stdbool.h"
 #include "primitives.h"
 #include "source/time.h"
-#include "config.h"
+#include "constants.h"
 
 Box2D a, b;
 
