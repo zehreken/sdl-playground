@@ -7,11 +7,12 @@
 
 //Box2D a, b;
 
-const int BOX_SIZE = 2;
+const int BOX_SIZE = 10;
 Box2D boxes[BOX_SIZE];
 
-void solveCollision(Box2D *a, Box2D *b)
+bool solveCollision(Box2D *a, Box2D *b)
 {
+    bool hasCollision = false;
     if (a->position.x < b->position.x + b->size.x &&
         a->position.x + a->size.x > b->position.x &&
         a->position.y < b->position.y + b->size.y &&
@@ -20,21 +21,26 @@ void solveCollision(Box2D *a, Box2D *b)
 	// There is collision
         a->color.r = b->color.r = 255;
         a->color.g = a->color.b = b->color.g = b->color.b = 0;
+        hasCollision = true;
     }
     else
     {
         a->color.r = a->color.b = b->color.r = b->color.b = 0;
         a->color.g = b->color.g = 255;
     }
+    return hasCollision;
 }
 
 void solvePhysics()
 {
-    for (int i = 0; i < BOX_SIZE - 1; i++)
+    for (int i = 0; i < 1; i++)
     {
         for (int j = i + 1; j < BOX_SIZE; j++)
         {
-            solveCollision(&boxes[i], &boxes[j]);
+            if (solveCollision(&boxes[i], &boxes[j]))
+            {
+                break;
+            }
         }
     }
 }
