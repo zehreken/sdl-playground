@@ -5,23 +5,37 @@
 #include "primitives.h"
 #include "constants.h"
 
-Box2D a, b;
+//Box2D a, b;
 
-void solveCollision()
+const int BOX_SIZE = 2;
+Box2D boxes[BOX_SIZE];
+
+void solveCollision(Box2D *a, Box2D *b)
 {
-    if (a.position.x < b.position.x + b.size.x &&
-        a.position.x + a.size.x > b.position.x &&
-        a.position.y < b.position.y + b.size.y &&
-        a.position.y + a.size.y > b.position.y)
+    if (a->position.x < b->position.x + b->size.x &&
+        a->position.x + a->size.x > b->position.x &&
+        a->position.y < b->position.y + b->size.y &&
+        a->position.y + a->size.y > b->position.y)
     {
 	// There is collision
-        a.color.r = b.color.r = 255;
-        a.color.g = a.color.b = b.color.g = b.color.b = 0;
+        a->color.r = b->color.r = 255;
+        a->color.g = a->color.b = b->color.g = b->color.b = 0;
     }
     else
     {
-        a.color.r = a.color.b = b.color.r = b.color.b = 0;
-        a.color.g = b.color.g = 255;
+        a->color.r = a->color.b = b->color.r = b->color.b = 0;
+        a->color.g = b->color.g = 255;
+    }
+}
+
+void solvePhysics()
+{
+    for (int i = 0; i < BOX_SIZE - 1; i++)
+    {
+        for (int j = i + 1; j < BOX_SIZE; j++)
+        {
+            solveCollision(&boxes[i], &boxes[j]);
+        }
     }
 }
 
@@ -34,10 +48,21 @@ int main(int argc, char* argv[])
     bool goDown = false;
     bool goRight = false;
     
-    a.position.x = a.position.y = b.position.x = b.position.y = 300;
-    a.size.x = a.size.y = b.size.x = b.size.y = 100;
-    a.color.r = 255;
-    b.color.b = 255;
+//    a->position.x = a->position.y = b->position.x = b->position.y = 300;
+//    a->size.x = a->size.y = b->size.x = b->size.y = 100;
+//    a->color.r = 255;
+//    b->color.b = 255;
+//    boxes[0] = *a;
+//    boxes[1] = *b;
+    for (int i = 0; i < BOX_SIZE; i++)
+    {
+        boxes[i].position.x = 100 * i;
+        boxes[i].position.y = 100 * i;
+        boxes[i].size.x = boxes[i].size.y = 20;
+        boxes[i].color.r = 255;
+        boxes[i].color.g = 255;
+        boxes[i].color.b = 255;
+    }
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
@@ -77,8 +102,12 @@ int main(int argc, char* argv[])
                 drawTriangle(renderer, i++);
                 if (i > WIDTH / 2) i = 0;
                 
-                drawBox(renderer, a);
-                drawBox(renderer, b);
+//                drawBox(renderer, a);
+//                drawBox(renderer, b);
+                for (int i = 0; i < BOX_SIZE; i++)
+                {
+                    drawBox(renderer, boxes[i]);
+                }
                 
                 drawDots(renderer);
                 
@@ -134,15 +163,15 @@ int main(int argc, char* argv[])
                 }
                 
                 if (goUp)
-                    a.position.y -= SPEED;
+                    boxes[0].position.y -= SPEED;
                 if (goLeft)
-                    a.position.x -= SPEED;
+                    boxes[0].position.x -= SPEED;
                 if (goDown)
-                    a.position.y += SPEED;
+                    boxes[0].position.y += SPEED;
                 if (goRight)
-                    a.position.x += SPEED;
+                    boxes[0].position.x += SPEED;
                 
-                solveCollision();
+                solvePhysics();
             }
             
             TTF_CloseFont(font);
