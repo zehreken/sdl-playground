@@ -20,12 +20,6 @@ int main(int argc, char* argv[])
     bool goDown = false;
     bool goRight = false;
     
-//    a->position.x = a->position.y = b->position.x = b->position.y = 300;
-//    a->size.x = a->size.y = b->size.x = b->size.y = 100;
-//    a->color.r = 255;
-//    b->color.b = 255;
-//    boxes[0] = *a;
-//    boxes[1] = *b;
     for (int i = 0; i < BOX_SIZE; i++)
     {
         boxes[i].position.x = 100 * i;
