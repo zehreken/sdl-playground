@@ -4,46 +4,12 @@
 #include "stdbool.h"
 #include "primitives.h"
 #include "constants.h"
+#include "collision.h"
 
 //Box2D a, b;
 
 const int BOX_SIZE = 10;
 Box2D boxes[BOX_SIZE];
-
-bool solveCollision(Box2D *a, Box2D *b)
-{
-    bool hasCollision = false;
-    if (a->position.x < b->position.x + b->size.x &&
-        a->position.x + a->size.x > b->position.x &&
-        a->position.y < b->position.y + b->size.y &&
-        a->position.y + a->size.y > b->position.y)
-    {
-	// There is collision
-        a->color.r = b->color.r = 255;
-        a->color.g = a->color.b = b->color.g = b->color.b = 0;
-        hasCollision = true;
-    }
-    else
-    {
-        a->color.r = a->color.b = b->color.r = b->color.b = 0;
-        a->color.g = b->color.g = 255;
-    }
-    return hasCollision;
-}
-
-void solvePhysics()
-{
-    for (int i = 0; i < 1; i++)
-    {
-        for (int j = i + 1; j < BOX_SIZE; j++)
-        {
-            if (solveCollision(&boxes[i], &boxes[j]))
-            {
-                break;
-            }
-        }
-    }
-}
 
 int main(int argc, char* argv[])
 {
@@ -177,7 +143,7 @@ int main(int argc, char* argv[])
                 if (goRight)
                     boxes[0].position.x += SPEED;
                 
-                solvePhysics();
+                solvePhysics(boxes, BOX_SIZE);
             }
             
             TTF_CloseFont(font);
