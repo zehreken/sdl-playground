@@ -8,7 +8,7 @@
 
 //Box2D a, b;
 
-const int BOX_SIZE = 10;
+const int BOX_SIZE = 2;
 Box2D boxes[BOX_SIZE];
 
 int main(int argc, char* argv[])
@@ -24,10 +24,15 @@ int main(int argc, char* argv[])
     {
         boxes[i].position.x = 100 * i;
         boxes[i].position.y = 100 * i;
-        boxes[i].size.x = boxes[i].size.y = 20;
+        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
         boxes[i].color.r = 255;
         boxes[i].color.g = 255;
         boxes[i].color.b = 255;
+        printf("%d %d %d %d\n",
+               boxes[i].position.x,
+               boxes[i].position.y,
+               boxes[i].size.x,
+               boxes[i].size.y);
     }
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
