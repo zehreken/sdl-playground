@@ -61,9 +61,9 @@ int main(int argc, char* argv[])
                 double diff = (double) (clock() - start) / CLOCKS_PER_SEC;
                 start = clock();
                 deltaTime = deltaTime + diff;
-                if (deltaTime < 0.033)
+                if (deltaTime < 0.016)
                 {
-                    // continue;
+                    continue;
                 }
                 else
                 {
