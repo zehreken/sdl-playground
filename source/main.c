@@ -8,11 +8,15 @@
 
 //Box2D a, b;
 
-const int BOX_SIZE = 10;
+const int BOX_SIZE = 20;
 Box2D boxes[BOX_SIZE];
 
 int main(int argc, char* argv[])
 {
+    clock_t start, end;
+    start = clock();
+    double deltaTime = 0;
+    // SDL_Delay(16);
     srand(time(NULL));
     
     bool goUp = false;
@@ -22,8 +26,8 @@ int main(int argc, char* argv[])
     
     for (int i = 0; i < BOX_SIZE; i++)
     {
-        boxes[i].position.x = 100 * i;
-        boxes[i].position.y = 100 * i;
+        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
+        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
         boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
         boxes[i].color.r = 255;
         boxes[i].color.g = 255;
@@ -37,7 +41,6 @@ int main(int argc, char* argv[])
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
-            
             if (TTF_Init() == -1)
                 printf("error");
             TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
@@ -55,6 +58,19 @@ int main(int argc, char* argv[])
             
             while (!done)
             {
+                double diff = (double) (clock() - start) / CLOCKS_PER_SEC;
+                start = clock();
+                deltaTime = deltaTime + diff;
+                if (deltaTime < 0.033)
+                {
+                    // continue;
+                }
+                else
+                {
+                    deltaTime = 0;
+                }
+                printf("delta time: %f\n", deltaTime);
+
                 SDL_Event event;
                 
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
@@ -136,7 +152,7 @@ int main(int argc, char* argv[])
                     boxes[0].position.y += SPEED;
                 if (goRight)
                     boxes[0].position.x += SPEED;
-                
+
                 solvePhysics(boxes, BOX_SIZE);
             }
             
