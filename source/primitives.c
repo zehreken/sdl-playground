@@ -13,6 +13,16 @@ void drawBox(SDL_Renderer* renderer, Box2D box2D)
 {
     IntVector2 pos = box2D.position;
     IntVector2 size = box2D.size;
+    if (box2D.hasCollision)
+    {
+        box2D.color.r = 255;
+        box2D.color.g = box2D.color.b = 0;
+    }
+    else
+    {
+        box2D.color.r = box2D.color.b = 0;
+        box2D.color.g = 255;
+    }
     ColorRGB color = box2D.color;
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
 //    SDL_RenderDrawLine(renderer, pos.x - size.x / 2, pos.y - size.y / 2, pos.x - size.x / 2, pos.y + size.y / 2); // left

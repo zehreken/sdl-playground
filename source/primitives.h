@@ -2,6 +2,7 @@
 #define PRIMITIVES_H
 
 #include "SDL2/SDL.h"
+#include "stdbool.h"
 
 typedef struct ColorRGBTag
 {
@@ -21,6 +22,7 @@ typedef struct Box2DTag
     IntVector2 position;
     IntVector2 size;
     ColorRGB color;
+    bool hasCollision;
 } Box2D;
 
 void drawTriangle(SDL_Renderer* renderer, int i);
