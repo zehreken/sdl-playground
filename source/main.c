@@ -39,6 +39,7 @@ int main(int argc, char* argv[])
     {
         SDL_Window* window = NULL;
         SDL_Renderer* renderer = NULL;
+        initFpsutils();
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {

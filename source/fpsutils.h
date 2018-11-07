@@ -1,6 +1,7 @@
 #ifndef FPSUTILS_H
 #define FPSUTILS_H
 
-float calculateFps(float deltaTime);
+void initFpsutils();
+double calculateFps(double deltaTime);
 
 #endif
