@@ -3,6 +3,6 @@
 
 static const int WIDTH = 800;
 static const int HEIGHT = 600;
-static const float SPEED = 1;
+static const float SPEED = 5;
 
 #endif

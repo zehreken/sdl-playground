@@ -5,6 +5,7 @@
 #include "primitives.h"
 #include "constants.h"
 #include "collision.h"
+#include "fpsutils.h"
 
 //Box2D a, b;
 
@@ -61,6 +62,8 @@ int main(int argc, char* argv[])
                 double diff = (double) (clock() - start) / CLOCKS_PER_SEC;
                 start = clock();
                 deltaTime = deltaTime + diff;
+
+                calculateFps(deltaTime);
                 if (deltaTime < 0.016)
                 {
                     continue;
@@ -69,8 +72,7 @@ int main(int argc, char* argv[])
                 {
                     deltaTime = 0;
                 }
-                printf("delta time: %f\n", deltaTime);
-
+                // printf("delta time: %f\n", deltaTime);
                 SDL_Event event;
                 
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
