@@ -76,8 +76,11 @@ int main(int argc, char* argv[])
                 }
                 else
                 {
+                    float f = getAverageFps();
+                    char c[50];
+                    sprintf(c, "%g", f);
                     timePerFrame = 0;
-                    surface = TTF_RenderText_Solid(font, "asdfasdf", color);
+                    surface = TTF_RenderText_Solid(font, c, color);
                     texture = SDL_CreateTextureFromSurface(renderer, surface);
                     SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
                 }
