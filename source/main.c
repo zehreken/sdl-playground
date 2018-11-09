@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 {
     clock_t start, end;
     start = clock();
-    double deltaTime = 0;
+    double timePerFrame = 0;
     // SDL_Delay(16);
     srand(time(NULL));
     
@@ -48,6 +48,7 @@ int main(int argc, char* argv[])
             TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
             if (!font)
                 printf("font loading error");
+
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing testing testing testing", color);
             SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -60,18 +61,25 @@ int main(int argc, char* argv[])
             
             while (!done)
             {
-                double diff = (double) (clock() - start) / CLOCKS_PER_SEC;
-                start = clock();
-                deltaTime = deltaTime + diff;
+                double deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
 
+                start = clock();
+                timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
-                if (deltaTime < 0.016)
+
+                for (int i = 0; i < 100000; i++)
+                    ;
+
+                if (timePerFrame < 0.0166666)
                 {
                     continue;
                 }
                 else
                 {
-                    deltaTime = 0;
+                    timePerFrame = 0;
+                    surface = TTF_RenderText_Solid(font, "asdfasdf", color);
+                    texture = SDL_CreateTextureFromSurface(renderer, surface);
+                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
                 }
                 // printf("delta time: %f\n", deltaTime);
                 SDL_Event event;

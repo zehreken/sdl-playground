@@ -2,23 +2,23 @@
 #include "time.h"
 #include "stdio.h"
 
-clock_t start, end;
 int counter;
+double acc;
 
 void initFpsutils()
 {
-    start = end = clock();
     counter = 0;
+    acc = 0;
 }
 
 double calculateFps(double deltaTime)
 {
-    double diff = (double) (clock() - start) / CLOCKS_PER_SEC;
-    if (diff > 1)
+    acc = acc + deltaTime;
+    if (acc > 1)
     {
         printf("fps: %d\n", counter);
         counter = 0;
-        start = clock();
+        acc = acc - 1;
     }
     else
     {
