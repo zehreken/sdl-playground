@@ -11,6 +11,7 @@
 
 const int BOX_SIZE = 20;
 Box2D boxes[BOX_SIZE];
+Triangle triangle;
 
 int main(int argc, char* argv[])
 {
@@ -34,6 +35,13 @@ int main(int argc, char* argv[])
         boxes[i].color.g = 255;
         boxes[i].color.b = 255;
     }
+    
+    triangle.position.x = 0;
+    triangle.position.y = 0;
+    triangle.size = 10;
+    triangle.color.r = 0;
+    triangle.color.g = 0;
+    triangle.color.b = 0;
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
@@ -96,6 +104,7 @@ int main(int argc, char* argv[])
                 SDL_RenderDrawLine(renderer, 340, 240, 320, 200);
                 
                 drawTriangle(renderer, i++);
+                
                 if (i > WIDTH / 2) i = 0;
                 
 //                drawBox(renderer, a);

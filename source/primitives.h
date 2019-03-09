@@ -17,6 +17,13 @@ typedef struct IntVector2Tag
     int y;
 } IntVector2;
 
+typedef struct TriangleTag
+{
+    IntVector2 position;
+    int size;
+    ColorRGB color;
+} Triangle;
+
 typedef struct Box2DTag
 {
     IntVector2 position;

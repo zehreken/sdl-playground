@@ -9,6 +9,17 @@ void drawTriangle(SDL_Renderer* renderer, int i)
     SDL_RenderDrawLine(renderer, 340 + i, 240, 320 + i, 200);
 }
 
+void drawTriangle2(SDL_Renderer* renderer, Triangle triangle)
+{
+    IntVector2 pos = triangle.position;
+    ColorRGB color = triangle.color;
+    
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(renderer, 320 + pos.x, 200 + pos.y, 300 + pos.x, 240 + pos.y);
+    SDL_RenderDrawLine(renderer, 300 + pos.x, 240 + pos.y, 340 + pos.x, 240 + pos.y);
+    SDL_RenderDrawLine(renderer, 340 + pos.x, 240 + pos.y, 320 + pos.x, 200 + pos.y);
+}
+
 void drawBox(SDL_Renderer* renderer, Box2D box2D)
 {
     IntVector2 pos = box2D.position;
