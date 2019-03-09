@@ -104,7 +104,7 @@ int main(int argc, char* argv[])
                 SDL_RenderDrawLine(renderer, 340, 240, 320, 200);
                 
                 drawTriangle(renderer, i++);
-                
+                drawTriangle2(renderer, triangle);
                 if (i > WIDTH / 2) i = 0;
                 
 //                drawBox(renderer, a);
