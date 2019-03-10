@@ -86,8 +86,8 @@ int main(int argc, char* argv[])
                 {
                     float f = getAverageFps();
                     char c[50];
-                    sprintf(c, "%g", f);
-                    strcat(c, " testing");
+                    sprintf(c, "%g", deltaTime);
+                    strcat(c, " deltaTime");
                     timePerFrame = 0;
                     surface = TTF_RenderText_Solid(font, c, color);
                     texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
                 
                 drawTriangle(renderer, i++);
                 drawTriangle2(renderer, triangle);
-                triangle.position.x += 2;
+                triangle.position.x += deltaTime * 1000;
                 if (i > WIDTH / 2)
                 {
                     i = 0;

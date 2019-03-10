@@ -39,7 +39,7 @@ typedef struct IntVector3Tag
 
 typedef struct TriangleTag
 {
-    IntVector2 position;
+    Vector2 position;
     int size;
     ColorRGB color;
 } Triangle;

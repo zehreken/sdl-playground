@@ -11,7 +11,7 @@ void drawTriangle(SDL_Renderer* renderer, int i)
 
 void drawTriangle2(SDL_Renderer* renderer, Triangle triangle)
 {
-    IntVector2 pos = triangle.position;
+    Vector2 pos = triangle.position;
     ColorRGB color = triangle.color;
     
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
