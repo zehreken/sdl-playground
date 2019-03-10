@@ -11,11 +11,31 @@ typedef struct ColorRGBTag
     int b;
 } ColorRGB;
 
+typedef struct Vector2Tag
+{
+    float x;
+    float y;
+} Vector2;
+
+typedef struct Vector3Tag
+{
+    float x;
+    float y;
+    float z;
+} Vector3;
+
 typedef struct IntVector2Tag
 {
     int x;
     int y;
 } IntVector2;
+
+typdef struct IntVector3Tag
+{
+    int x;
+    int y;
+    int z;
+} IntVector3;
 
 typedef struct TriangleTag
 {

@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
                 
                 drawTriangle(renderer, i++);
                 drawTriangle2(renderer, triangle);
-                triangle.position.x += 1;
+                triangle.position.x += 2;
                 if (i > WIDTH / 2)
                 {
                     i = 0;
