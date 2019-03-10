@@ -30,7 +30,7 @@ typedef struct IntVector2Tag
     int y;
 } IntVector2;
 
-typdef struct IntVector3Tag
+typedef struct IntVector3Tag
 {
     int x;
     int y;

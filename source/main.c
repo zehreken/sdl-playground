@@ -87,6 +87,7 @@ int main(int argc, char* argv[])
                     float f = getAverageFps();
                     char c[50];
                     sprintf(c, "%g", f);
+                    strcat(c, " testing");
                     timePerFrame = 0;
                     surface = TTF_RenderText_Solid(font, c, color);
                     texture = SDL_CreateTextureFromSurface(renderer, surface);
