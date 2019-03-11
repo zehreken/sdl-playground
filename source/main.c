@@ -75,8 +75,10 @@ int main(int argc, char* argv[])
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
 
-                for (int i = 0; i < 100000; i++)
+                for (int i = 0; i < 1000000; i++)
                     ;
+                
+                triangle.position.x += deltaTime * 50;
 
                 if (timePerFrame < 0.0166666)
                 {
@@ -101,7 +103,6 @@ int main(int argc, char* argv[])
                 
                 drawTriangle(renderer, i++);
                 drawTriangle2(renderer, triangle);
-                triangle.position.x += deltaTime * 1000;
                 if (i > WIDTH / 2)
                 {
                     i = 0;
