@@ -22,7 +22,7 @@ void drawTriangle2(SDL_Renderer* renderer, Triangle triangle)
 
 void drawBox(SDL_Renderer* renderer, Box2D box2D)
 {
-    IntVector2 pos = box2D.position;
+    Vector2 pos = box2D.position;
     IntVector2 size = box2D.size;
     if (box2D.hasCollision)
     {

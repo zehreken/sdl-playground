@@ -46,7 +46,7 @@ typedef struct TriangleTag
 
 typedef struct Box2DTag
 {
-    IntVector2 position;
+    Vector2 position;
     IntVector2 size;
     ColorRGB color;
     bool hasCollision;

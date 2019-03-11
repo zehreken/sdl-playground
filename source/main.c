@@ -7,8 +7,6 @@
 #include "collision.h"
 #include "fpsutils.h"
 
-//Box2D a, b;
-
 const int BOX_SIZE = 20;
 Box2D boxes[BOX_SIZE];
 Triangle triangle;
@@ -109,8 +107,6 @@ int main(int argc, char* argv[])
                     triangle.position.x = 0;
                 }
                 
-//                drawBox(renderer, a);
-//                drawBox(renderer, b);
                 for (int i = 0; i < BOX_SIZE; i++)
                 {
                     drawBox(renderer, boxes[i]);
