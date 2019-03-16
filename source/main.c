@@ -78,21 +78,21 @@ int main(int argc, char* argv[])
                 
                 triangle.position.x += deltaTime * 50;
 
-                if (timePerFrame < 0.0166666)
-                {
-                    continue;
-                }
-                else
-                {
-                    float f = getAverageFps();
-                    char c[50];
-                    sprintf(c, "%g", deltaTime);
-                    strcat(c, " deltaTime");
-                    timePerFrame = 0;
-                    surface = TTF_RenderText_Solid(font, c, color);
-                    texture = SDL_CreateTextureFromSurface(renderer, surface);
-                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
-                }
+//                if (timePerFrame < 0.0166666)
+//                {
+//                    continue;
+//                }
+//                else
+//                {
+//                    float f = getAverageFps();
+//                    char c[50];
+//                    sprintf(c, "%g", deltaTime);
+//                    strcat(c, " deltaTime");
+//                    timePerFrame = 0;
+//                    surface = TTF_RenderText_Solid(font, c, color);
+//                    texture = SDL_CreateTextureFromSurface(renderer, surface);
+//                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
+//                }
                 // printf("delta time: %f\n", deltaTime);
                 SDL_Event event;
                 
@@ -166,15 +166,31 @@ int main(int argc, char* argv[])
                 }
                 
                 if (goUp)
-                    boxes[0].position.y -= SPEED;
+                    boxes[0].position.y -= deltaTime * SPEED;
                 if (goLeft)
-                    boxes[0].position.x -= SPEED;
+                    boxes[0].position.x -= deltaTime * SPEED;
                 if (goDown)
-                    boxes[0].position.y += SPEED;
+                    boxes[0].position.y += deltaTime * SPEED;
                 if (goRight)
-                    boxes[0].position.x += SPEED;
+                    boxes[0].position.x += deltaTime * SPEED;
 
                 solvePhysics(boxes, BOX_SIZE);
+                
+                if (timePerFrame < 0.0166666)
+                {
+                    continue;
+                }
+                else
+                {
+                    float f = getAverageFps();
+                    char c[50];
+                    sprintf(c, "%g", deltaTime);
+                    strcat(c, " deltaTime");
+                    timePerFrame = 0;
+                    surface = TTF_RenderText_Solid(font, c, color);
+                    texture = SDL_CreateTextureFromSurface(renderer, surface);
+                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
+                }
             }
             
             TTF_CloseFont(font);
