@@ -9,6 +9,7 @@ void solveCollision(Box2D *a, Box2D *b)
         a->position.y + a->size.y > b->position.y)
     {
         // There is collision
+        a->hasCollision = true;
         b->hasCollision = true;
     }
     else
@@ -19,6 +20,7 @@ void solveCollision(Box2D *a, Box2D *b)
 
 void solvePhysics(Box2D boxes[], int size)
 {
+    boxes[0].hasCollision = false;
     for (int i = 0; i < 1; i++)
     {
         for (int j = i + 1; j < size; j++)

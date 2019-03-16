@@ -7,7 +7,7 @@
 #include "collision.h"
 #include "fpsutils.h"
 
-const int BOX_SIZE = 20;
+const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
 Triangle triangle;
 
@@ -73,8 +73,8 @@ int main(int argc, char* argv[])
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
 
-                for (int i = 0; i < 1000000; i++)
-                    ;
+//                for (int i = 0; i < 1000000; i++)
+//                    ;
                 
                 triangle.position.x += deltaTime * 50;
 

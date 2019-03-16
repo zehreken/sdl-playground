@@ -48,7 +48,7 @@ void drawBox(SDL_Renderer* renderer, Box2D box2D)
 
 void drawDots(SDL_Renderer* renderer)
 {
-    SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, SDL_ALPHA_OPAQUE);
     for (int i = 0; i < WIDTH; i++)
     {
         int rnd = (rand() / (RAND_MAX + 1.0)) * HEIGHT;
