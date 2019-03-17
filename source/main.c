@@ -6,6 +6,7 @@
 #include "constants.h"
 #include "collision.h"
 #include "fpsutils.h"
+#include "SDL2_image/SDL_image.h"
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
@@ -50,10 +51,14 @@ int main(int argc, char* argv[])
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
             if (TTF_Init() == -1)
-                printf("error");
+                printf("TTF_Init error");
             TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
             if (!font)
                 printf("font loading error");
+            
+            int imgFlag = 0;
+            if (IMG_Init(imgFlag) == -1)
+                printf("IMG_Init error");
 
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing testing testing testing", color);
@@ -61,6 +66,12 @@ int main(int argc, char* argv[])
             SDL_Rect textRect;
             textRect.x = textRect.y = 0;
             SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
+            
+            SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
+            SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
+            SDL_Rect pngTextRect;
+            pngTextRect.x = pngTextRect.y = 50;
+            SDL_QueryTexture(pngTexture, NULL, NULL, &pngTextRect.w, &pngTextRect.h);
             
             SDL_bool done = SDL_FALSE;
             int i = 0;
@@ -115,6 +126,7 @@ int main(int argc, char* argv[])
                 drawDots(renderer);
                 
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
+                SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 SDL_RenderPresent(renderer);
                 
                 while (SDL_PollEvent(&event))
@@ -207,6 +219,7 @@ int main(int argc, char* argv[])
     }
 
     TTF_Quit();
+    IMG_Quit();
     SDL_Quit();
     return 0;
 }
