@@ -70,8 +70,10 @@ int main(int argc, char* argv[])
             SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
             SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
             SDL_Rect pngTextRect;
-            pngTextRect.x = pngTextRect.y = 50;
-            SDL_QueryTexture(pngTexture, NULL, NULL, &pngTextRect.w, &pngTextRect.h);
+            pngTextRect.x = pngTextRect.y = 400;
+            pngTextRect.w = 99;
+            pngTextRect.h = 75;
+//            SDL_QueryTexture(pngTexture, NULL, NULL, &pngTextRect.w, &pngTextRect.h);
             
             SDL_bool done = SDL_FALSE;
             int i = 0;
@@ -178,13 +180,25 @@ int main(int argc, char* argv[])
                 }
                 
                 if (goUp)
+                {
                     boxes[0].position.y -= deltaTime * SPEED;
+                    pngTextRect.y -= 1;
+                }
                 if (goLeft)
+                {
                     boxes[0].position.x -= deltaTime * SPEED;
+                    pngTextRect.x -= 1;
+                }
                 if (goDown)
+                {
                     boxes[0].position.y += deltaTime * SPEED;
+                    pngTextRect.y += 1;
+                }
                 if (goRight)
+                {
                     boxes[0].position.x += deltaTime * SPEED;
+                    pngTextRect.x += 1;
+                }
 
                 solvePhysics(boxes, BOX_SIZE);
                 
