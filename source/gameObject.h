@@ -12,6 +12,8 @@ typedef struct GameObjectTag
     SDL_Texture* texture;
 } GameObject;
 
-
+void init();
+void drawBox();
+void drawImage();
 
 #endif

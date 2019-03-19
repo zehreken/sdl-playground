@@ -1,6 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "gameObject.h"
+void update();
 
 #endif

@@ -7,6 +7,7 @@
 #include "collision.h"
 #include "fpsutils.h"
 #include "SDL2_image/SDL_image.h"
+#include "game.h"
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
@@ -130,6 +131,8 @@ int main(int argc, char* argv[])
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
                 SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 SDL_RenderPresent(renderer);
+                
+                update();
                 
                 while (SDL_PollEvent(&event))
                 {
