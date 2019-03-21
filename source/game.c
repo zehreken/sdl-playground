@@ -15,11 +15,8 @@ void initGame()
     }
 }
 
-void update()
+void updateGame()
 {
-    for (int i = 0; i < GAME_OBJECT_COUNT; i++)
-    {
-        drawCollider();
-        drawImage();
-    }
+//    drawCollider(renderer, gameObjects);
+//    drawImage(renderer, gameObjects[i]);
 }

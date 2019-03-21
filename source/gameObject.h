@@ -13,7 +13,7 @@ typedef struct GameObjectTag
 } GameObject;
 
 void initGameObject();
-void drawCollider();
-void drawImage();
+void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
+void drawImage(SDL_Renderer* renderer, GameObject GameObject);
 
 #endif

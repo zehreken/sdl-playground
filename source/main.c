@@ -45,8 +45,8 @@ int main(int argc, char* argv[])
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
-        SDL_Window* window = NULL;
-        SDL_Renderer* renderer = NULL;
+        window = NULL;
+        renderer = NULL;
         initFpsutils();
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
@@ -132,7 +132,7 @@ int main(int argc, char* argv[])
                 SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 SDL_RenderPresent(renderer);
                 
-                update();
+                updateGame();
                 
                 while (SDL_PollEvent(&event))
                 {
