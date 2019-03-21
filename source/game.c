@@ -1,4 +1,6 @@
 #include "game.h"
+#include "SDL2_ttf/SDL_ttf.h"
+#include "SDL2_image/SDL_image.h"
 #include "gameObject.h"
 #include "constants.h"
 
@@ -7,6 +9,22 @@ GameObject gameObjects[GAME_OBJECT_COUNT];
 
 void initGame()
 {
+    window = NULL;
+    renderer = NULL;
+    
+    if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
+    {
+        if (TTF_Init() == -1)
+            printf("TTF_Init error");
+        TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
+        if (!font)
+            printf("Font loading error");
+        
+        int IMG_Flag = 0;
+        if (IMG_Init(IMG_Flag) == -1)
+            printf("IMG_Init error");
+    }
+    
     for (int i = 0; i < GAME_OBJECT_COUNT; i++)
     {
         gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;

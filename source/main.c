@@ -45,8 +45,7 @@ int main(int argc, char* argv[])
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
-        window = NULL;
-        renderer = NULL;
+        initGame();
         initFpsutils();
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
