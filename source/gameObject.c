@@ -1,11 +1,11 @@
 #include "gameObject.h"
 
-void init()
+void initGameObject()
 {
     
 }
 
-void drawBox()
+void drawCollider()
 {
     
 }

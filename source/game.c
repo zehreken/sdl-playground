@@ -5,7 +5,7 @@
 const int GAME_OBJECT_COUNT = 100;
 GameObject gameObjects[GAME_OBJECT_COUNT];
 
-void init()
+void initGame()
 {
     for (int i = 0; i < GAME_OBJECT_COUNT; i++)
     {
@@ -17,5 +17,9 @@ void init()
 
 void update()
 {
-    
+    for (int i = 0; i < GAME_OBJECT_COUNT; i++)
+    {
+        drawCollider();
+        drawImage();
+    }
 }
