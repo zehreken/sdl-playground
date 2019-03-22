@@ -43,9 +43,12 @@ int main(int argc, char* argv[])
     triangle.color.g = 0;
     triangle.color.b = 255;
     
+    initGame();
+    return 0;
+    
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
-        initGame();
+//        initGame();
         initFpsutils();
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
