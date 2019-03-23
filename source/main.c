@@ -9,8 +9,8 @@
 #include "SDL2_image/SDL_image.h"
 #include "game.h"
 
-const int BOX_SIZE = 100;
-Box2D boxes[BOX_SIZE];
+//const int BOX_SIZE = 100;
+//Box2D boxes[BOX_SIZE];
 Triangle triangle;
 
 int main(int argc, char* argv[])
@@ -26,29 +26,28 @@ int main(int argc, char* argv[])
     bool goDown = false;
     bool goRight = false;
     
-    for (int i = 0; i < BOX_SIZE; i++)
-    {
-        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
-        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
-        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
-        boxes[i].color.r = 255;
-        boxes[i].color.g = 255;
-        boxes[i].color.b = 255;
-    }
+//    for (int i = 0; i < BOX_SIZE; i++)
+//    {
+//        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
+//        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
+//        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
+//        boxes[i].color.r = 255;
+//        boxes[i].color.g = 255;
+//        boxes[i].color.b = 255;
+//    }
     
-    triangle.position.x = 0;
-    triangle.position.y = 0;
-    triangle.size = 10;
-    triangle.color.r = 255;
-    triangle.color.g = 0;
-    triangle.color.b = 255;
+//    triangle.position.x = 0;
+//    triangle.position.y = 0;
+//    triangle.size = 10;
+//    triangle.color.r = 255;
+//    triangle.color.g = 0;
+//    triangle.color.b = 255;
     
     initGame();
     return 0;
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
-//        initGame();
         initFpsutils();
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
@@ -123,10 +122,10 @@ int main(int argc, char* argv[])
                     triangle.position.x = 0;
                 }
                 
-                for (int i = 0; i < BOX_SIZE; i++)
-                {
-                    drawBox(renderer, boxes[i]);
-                }
+//                for (int i = 0; i < BOX_SIZE; i++)
+//                {
+//                    drawBox(renderer, boxes[i]);
+//                }
                 
                 drawDots(renderer);
                 
@@ -134,7 +133,7 @@ int main(int argc, char* argv[])
                 SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 SDL_RenderPresent(renderer);
                 
-                updateGame();
+//                updateGame();
                 
                 while (SDL_PollEvent(&event))
                 {
@@ -183,29 +182,29 @@ int main(int argc, char* argv[])
                             break;
                     }
                 }
-                
-                if (goUp)
-                {
-                    boxes[0].position.y -= deltaTime * SPEED;
-                    pngTextRect.y -= 1;
-                }
-                if (goLeft)
-                {
-                    boxes[0].position.x -= deltaTime * SPEED;
-                    pngTextRect.x -= 1;
-                }
-                if (goDown)
-                {
-                    boxes[0].position.y += deltaTime * SPEED;
-                    pngTextRect.y += 1;
-                }
-                if (goRight)
-                {
-                    boxes[0].position.x += deltaTime * SPEED;
-                    pngTextRect.x += 1;
-                }
-
-                solvePhysics(boxes, BOX_SIZE);
+//
+//                if (goUp)
+//                {
+//                    boxes[0].position.y -= deltaTime * SPEED;
+//                    pngTextRect.y -= 1;
+//                }
+//                if (goLeft)
+//                {
+//                    boxes[0].position.x -= deltaTime * SPEED;
+//                    pngTextRect.x -= 1;
+//                }
+//                if (goDown)
+//                {
+//                    boxes[0].position.y += deltaTime * SPEED;
+//                    pngTextRect.y += 1;
+//                }
+//                if (goRight)
+//                {
+//                    boxes[0].position.x += deltaTime * SPEED;
+//                    pngTextRect.x += 1;
+//                }
+//
+//                solvePhysics(boxes, BOX_SIZE);
                 
                 if (timePerFrame < 0.0166666)
                 {

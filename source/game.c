@@ -8,12 +8,16 @@ const int GAME_OBJECT_COUNT = 100;
 GameObject gameObjects[GAME_OBJECT_COUNT];
 SDL_bool done;
 
+const int BOX_SIZE = 100;
+Box2D boxes[BOX_SIZE];
+
 bool goUp;
 bool goLeft;
 bool goDown;
 bool goRight;
 
 void getInput();
+void setInput();
 
 void initGame()
 {
@@ -31,6 +35,16 @@ void initGame()
         gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
         gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
         gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 *  (rand() / (RAND_MAX + 1.0)) * 90;
+    }
+    
+    for (int i = 0; i < BOX_SIZE; i++)
+    {
+        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
+        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
+        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
+        boxes[i].color.r = 255;
+        boxes[i].color.g = 255;
+        boxes[i].color.b = 255;
     }
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
@@ -55,13 +69,45 @@ void initGame()
             SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
             
             SDL_RenderCopy(renderer, texture, NULL, &textRect);
-            SDL_RenderPresent(renderer);
             
+            
+            
+            // MAIN LOOP
             while (!done)
             {
+                for (int i = 0; i < BOX_SIZE; i++)
+                {
+                    drawBox(renderer, boxes[i]);
+                }
+                
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+                SDL_RenderPresent(renderer);
+                SDL_RenderClear(renderer);
                 getInput();
+                setInput();
             }
         }
+    }
+}
+
+void setInput()
+{
+    float deltaTime = 0.001;
+    if (goUp)
+    {
+        boxes[0].position.y -= deltaTime * SPEED;
+    }
+    if (goLeft)
+    {
+        boxes[0].position.x -= deltaTime * SPEED;
+    }
+    if (goDown)
+    {
+        boxes[0].position.y += deltaTime * SPEED;
+    }
+    if (goRight)
+    {
+        boxes[0].position.x += deltaTime * SPEED;
     }
 }
 
