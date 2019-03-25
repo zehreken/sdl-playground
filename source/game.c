@@ -3,6 +3,8 @@
 #include "SDL2_image/SDL_image.h"
 #include "gameObject.h"
 #include "constants.h"
+#include "time.h"
+#include "fpsutils.h"
 
 const int GAME_OBJECT_COUNT = 100;
 GameObject gameObjects[GAME_OBJECT_COUNT];
@@ -16,6 +18,8 @@ bool goLeft;
 bool goDown;
 bool goRight;
 
+double deltaTime;
+
 void getInput();
 void setInput();
 
@@ -24,6 +28,10 @@ void initGame()
     window = NULL;
     renderer = NULL;
     done = SDL_FALSE;
+    
+    clock_t start, end;
+    start = clock();
+    double timePerFrame = 0;
     
     goUp = false;
     goLeft = false;
@@ -68,23 +76,46 @@ void initGame()
             textRect.x = textRect.y = 0;
             SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
             
-            SDL_RenderCopy(renderer, texture, NULL, &textRect);
-            
-            
-            
             // MAIN LOOP
             while (!done)
             {
+                deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
+                start = clock();
+                timePerFrame = timePerFrame + deltaTime;
+                calculateFps(deltaTime);
+                
                 for (int i = 0; i < BOX_SIZE; i++)
                 {
                     drawBox(renderer, boxes[i]);
                 }
                 
+                // Set background color
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+                // Text on the top left corner
+                SDL_RenderCopy(renderer, texture, NULL, &textRect);
+                // Draws everything
                 SDL_RenderPresent(renderer);
+                // Clears everything, I still don't understand how this works
                 SDL_RenderClear(renderer);
+                
                 getInput();
                 setInput();
+                
+                if (timePerFrame < 0.0166666)
+                {
+                    continue;
+                }
+                else
+                {
+                    float f = getAverageFps();
+                    char c[50];
+                    sprintf(c, "%g", deltaTime);
+                    strcat(c, " deltaTime");
+                    timePerFrame = 0;
+                    surface = TTF_RenderText_Solid(font, c, color);
+                    texture = SDL_CreateTextureFromSurface(renderer, surface);
+                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
+                }
             }
         }
     }
