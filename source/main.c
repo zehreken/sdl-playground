@@ -4,7 +4,6 @@
 #include "stdbool.h"
 #include "primitives.h"
 #include "constants.h"
-#include "collision.h"
 #include "fpsutils.h"
 #include "SDL2_image/SDL_image.h"
 #include "game.h"

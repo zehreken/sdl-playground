@@ -1,5 +1,5 @@
-#ifndef COLLISION_H
-#define COLLISION_H
+#ifndef PHYSICS_H
+#define PHYSICS_H
 
 #include "stdbool.h"
 #include "primitives.h"

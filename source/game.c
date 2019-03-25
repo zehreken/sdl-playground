@@ -5,6 +5,7 @@
 #include "constants.h"
 #include "time.h"
 #include "fpsutils.h"
+#include "physics.h"
 
 const int GAME_OBJECT_COUNT = 100;
 GameObject gameObjects[GAME_OBJECT_COUNT];
@@ -100,6 +101,7 @@ void initGame()
                 
                 getInput();
                 setInput();
+                solvePhysics(boxes, BOX_SIZE);
                 
                 if (timePerFrame < 0.0166666)
                 {
