@@ -10,15 +10,15 @@
 
 //const int BOX_SIZE = 100;
 //Box2D boxes[BOX_SIZE];
-Triangle triangle;
+//Triangle triangle;
 
 int main(int argc, char* argv[])
 {
-    clock_t start, end;
-    start = clock();
-    double timePerFrame = 0;
-    // SDL_Delay(16);
-    srand(time(NULL));
+//    clock_t start, end;
+//    start = clock();
+//    double timePerFrame = 0;
+//    // SDL_Delay(16);
+//    srand(time(NULL));
     
     bool goUp = false;
     bool goLeft = false;
@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 //    triangle.color.g = 0;
 //    triangle.color.b = 255;
     
-    initGame();
+    startGame();
     return 0;
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
@@ -64,16 +64,16 @@ int main(int argc, char* argv[])
             
             while (!done)
             {
-                double deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
+//                double deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
 
-                start = clock();
-                timePerFrame = timePerFrame + deltaTime;
-                calculateFps(deltaTime);
+//                start = clock();
+//                timePerFrame = timePerFrame + deltaTime;
+//                calculateFps(deltaTime);
 
 //                for (int i = 0; i < 1000000; i++)
 //                    ;
                 
-                triangle.position.x += deltaTime * 50;
+//                triangle.position.x += deltaTime * 50;
 
 //                if (timePerFrame < 0.0166666)
 //                {
@@ -96,13 +96,13 @@ int main(int argc, char* argv[])
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
                 SDL_RenderClear(renderer);
                 
-                drawTriangle(renderer, i++);
-                drawTriangle2(renderer, triangle);
-                if (i > WIDTH / 2)
-                {
-                    i = 0;
-                    triangle.position.x = 0;
-                }
+//                drawTriangle(renderer, i++);
+//                drawTriangle2(renderer, triangle);
+//                if (i > WIDTH / 2)
+//                {
+//                    i = 0;
+//                    triangle.position.x = 0;
+//                }
                 
 //                for (int i = 0; i < BOX_SIZE; i++)
 //                {
@@ -186,19 +186,6 @@ int main(int argc, char* argv[])
 //                }
 //
 //                solvePhysics(boxes, BOX_SIZE);
-                
-                if (timePerFrame < 0.0166666)
-                {
-                    continue;
-                }
-                else
-                {
-                    float f = getAverageFps();
-                    char c[50];
-                    sprintf(c, "%g", deltaTime);
-                    strcat(c, " deltaTime");
-                    timePerFrame = 0;
-                }
             }
         }
         

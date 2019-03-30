@@ -24,7 +24,7 @@ double deltaTime;
 void getInput();
 void setInput();
 
-void initGame()
+int startGame()
 {
     window = NULL;
     renderer = NULL;
@@ -122,7 +122,21 @@ void initGame()
             
             TTF_CloseFont(font);
         }
+        
+        if (renderer)
+        {
+            SDL_DestroyRenderer(renderer);
+        }
+        if (window)
+        {
+            SDL_DestroyWindow(window);
+        }
     }
+    
+    TTF_Quit();
+    IMG_Quit();
+    SDL_Quit();
+    return 0;
 }
 
 void setInput()

@@ -8,7 +8,7 @@ SDL_Window* window;
 SDL_Renderer* renderer;
 
 // Methods
-void initGame();
+int startGame();
 void updateGame();
 
 #endif
