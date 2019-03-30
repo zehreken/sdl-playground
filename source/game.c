@@ -119,6 +119,8 @@ void initGame()
                     SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
                 }
             }
+            
+            TTF_CloseFont(font);
         }
     }
 }

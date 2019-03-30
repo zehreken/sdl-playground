@@ -51,23 +51,6 @@ int main(int argc, char* argv[])
         
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
-            if (TTF_Init() == -1)
-                printf("TTF_Init error");
-            TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
-            if (!font)
-                printf("font loading error");
-            
-            int imgFlag = 0;
-            if (IMG_Init(imgFlag) == -1)
-                printf("IMG_Init error");
-
-            SDL_Color color = { 255, 255, 255, 255 };
-            SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing testing testing testing", color);
-            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-            SDL_Rect textRect;
-            textRect.x = textRect.y = 0;
-            SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
-            
             SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
             SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
             SDL_Rect pngTextRect;
@@ -128,7 +111,6 @@ int main(int argc, char* argv[])
                 
                 drawDots(renderer);
                 
-                SDL_RenderCopy(renderer, texture, NULL, &textRect);
                 SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 SDL_RenderPresent(renderer);
                 
@@ -216,13 +198,8 @@ int main(int argc, char* argv[])
                     sprintf(c, "%g", deltaTime);
                     strcat(c, " deltaTime");
                     timePerFrame = 0;
-                    surface = TTF_RenderText_Solid(font, c, color);
-                    texture = SDL_CreateTextureFromSurface(renderer, surface);
-                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
                 }
             }
-            
-            TTF_CloseFont(font);
         }
         
         if (renderer)
