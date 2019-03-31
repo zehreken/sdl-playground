@@ -13,6 +13,7 @@ SDL_bool done;
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
+SDL_Rect pngTextRect;
 
 bool goUp;
 bool goLeft;
@@ -72,7 +73,6 @@ int startGame()
             
             SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
             SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
-            SDL_Rect pngTextRect;
             pngTextRect.x = pngTextRect.y = 400;
             pngTextRect.w = 99;
             pngTextRect.h = 75;
@@ -154,18 +154,22 @@ void setInput()
     if (goUp)
     {
         boxes[0].position.y -= deltaTime * SPEED;
+        pngTextRect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
+        pngTextRect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
+        pngTextRect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
+        pngTextRect.x += 1;
     }
 }
 
