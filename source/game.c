@@ -70,6 +70,13 @@ int startGame()
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
             
+            SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
+            SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
+            SDL_Rect pngTextRect;
+            pngTextRect.x = pngTextRect.y = 400;
+            pngTextRect.w = 99;
+            pngTextRect.h = 75;
+            
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
             SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
@@ -94,6 +101,8 @@ int startGame()
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
+                // PNG
+                SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
                 // Draws everything
                 SDL_RenderPresent(renderer);
                 // Clears everything, I still don't understand how this works

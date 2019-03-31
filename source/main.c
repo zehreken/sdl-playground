@@ -20,10 +20,10 @@ int main(int argc, char* argv[])
 //    // SDL_Delay(16);
 //    srand(time(NULL));
     
-    bool goUp = false;
-    bool goLeft = false;
-    bool goDown = false;
-    bool goRight = false;
+//    bool goUp = false;
+//    bool goLeft = false;
+//    bool goDown = false;
+//    bool goRight = false;
     
 //    for (int i = 0; i < BOX_SIZE; i++)
 //    {
@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 //                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
 //                }
                 // printf("delta time: %f\n", deltaTime);
-                SDL_Event event;
+//                SDL_Event event;
                 
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
                 SDL_RenderClear(renderer);
@@ -116,53 +116,53 @@ int main(int argc, char* argv[])
                 
 //                updateGame();
                 
-                while (SDL_PollEvent(&event))
-                {
-                    switch (event.type)
-                    {
-                        case SDL_KEYDOWN:
-                            if (event.key.keysym.sym == SDLK_w)
-                            {
-                                goUp = true;
-                            }
-                            if (event.key.keysym.sym == SDLK_a)
-                            {
-                                goLeft = true;
-                            }
-                            if (event.key.keysym.sym == SDLK_s)
-                            {
-                                goDown = true;
-                            }
-                            if (event.key.keysym.sym == SDLK_d)
-                            {
-                                goRight = true;
-                            }
-                            break;
-                        case SDL_KEYUP:
-                            if (event.key.keysym.sym == SDLK_w)
-                            {
-                                goUp = false;
-                            }
-                            if (event.key.keysym.sym == SDLK_a)
-                            {
-                                goLeft = false;
-                            }
-                            if (event.key.keysym.sym == SDLK_s)
-                            {
-                                goDown = false;
-                            }
-                            if (event.key.keysym.sym == SDLK_d)
-                            {
-                                goRight = false;
-                            }
-                            break;
-                        case SDL_QUIT:
-                            done = SDL_TRUE;
-                            break;
-                        default:
-                            break;
-                    }
-                }
+//                while (SDL_PollEvent(&event))
+//                {
+//                    switch (event.type)
+//                    {
+//                        case SDL_KEYDOWN:
+//                            if (event.key.keysym.sym == SDLK_w)
+//                            {
+//                                goUp = true;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_a)
+//                            {
+//                                goLeft = true;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_s)
+//                            {
+//                                goDown = true;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_d)
+//                            {
+//                                goRight = true;
+//                            }
+//                            break;
+//                        case SDL_KEYUP:
+//                            if (event.key.keysym.sym == SDLK_w)
+//                            {
+//                                goUp = false;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_a)
+//                            {
+//                                goLeft = false;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_s)
+//                            {
+//                                goDown = false;
+//                            }
+//                            if (event.key.keysym.sym == SDLK_d)
+//                            {
+//                                goRight = false;
+//                            }
+//                            break;
+//                        case SDL_QUIT:
+//                            done = SDL_TRUE;
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                }
 //
 //                if (goUp)
 //                {
