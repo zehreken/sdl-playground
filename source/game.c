@@ -13,7 +13,7 @@ SDL_bool done;
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
-SDL_Rect pngTextRect;
+SDL_Rect pngRect;
 
 bool goUp;
 bool goLeft;
@@ -40,13 +40,6 @@ int startGame()
     goDown = false;
     goRight = false;
     
-    for (int i = 0; i < GAME_OBJECT_COUNT; i++)
-    {
-        gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
-        gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
-        gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 *  (rand() / (RAND_MAX + 1.0)) * 90;
-    }
-    
     for (int i = 0; i < BOX_SIZE; i++)
     {
         boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
@@ -71,11 +64,19 @@ int startGame()
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
             
+            for (int i = 0; i < GAME_OBJECT_COUNT; i++)
+            {
+//                gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
+//                gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
+//                gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 *  (rand() / (RAND_MAX + 1.0)) * 90;
+                createGameObject(renderer, gameObjects[i]);
+            }
+            
             SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
             SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
-            pngTextRect.x = pngTextRect.y = 400;
-            pngTextRect.w = 99;
-            pngTextRect.h = 75;
+            pngRect.x = pngRect.y = 400;
+            pngRect.w = 99;
+            pngRect.h = 75;
             
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
@@ -92,17 +93,22 @@ int startGame()
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
                 
+                // Boxes
                 for (int i = 0; i < BOX_SIZE; i++)
                 {
                     drawBox(renderer, boxes[i]);
                 }
+                // PNG
+//                SDL_RenderCopy(renderer, pngTexture, NULL, &pngRect);
+                for (int i = 0; i < GAME_OBJECT_COUNT; i++)
+                {
+                    drawImage(renderer, gameObjects[i]);
+                }
                 
-                // Set background color
-                SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
-                // PNG
-                SDL_RenderCopy(renderer, pngTexture, NULL, &pngTextRect);
+                // Set background color
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
                 // Draws everything
                 SDL_RenderPresent(renderer);
                 // Clears everything, I still don't understand how this works
@@ -154,22 +160,22 @@ void setInput()
     if (goUp)
     {
         boxes[0].position.y -= deltaTime * SPEED;
-        pngTextRect.y -= 1;
+        pngRect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
-        pngTextRect.x -= 1;
+        pngRect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
-        pngTextRect.y += 1;
+        pngRect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
-        pngTextRect.x += 1;
+        pngRect.x += 1;
     }
 }
 
