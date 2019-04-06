@@ -12,7 +12,16 @@ void createGameObject(SDL_Renderer* renderer, GameObject gameObject)
 
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
 {
-    
+    ColorRGB color;
+    color.r = 255;
+    color.g = 255;
+    color.b = 255;
+    SDL_Rect pos = gameObject.rect;
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
+    SDL_RenderDrawLine(renderer, pos.x, pos.y, pos.x, pos.y + pos.h);
+    SDL_RenderDrawLine(renderer, pos.x, pos.y, pos.x + pos.w, pos.y);
+    SDL_RenderDrawLine(renderer, pos.x + pos.w, pos.y, pos.x + pos.w, pos.y + pos.h);
+    SDL_RenderDrawLine(renderer, pos.x, pos.y + pos.h, pos.x + pos.w, pos.y + pos.h);
 }
 
 void drawImage(SDL_Renderer* renderer, GameObject gameObject)

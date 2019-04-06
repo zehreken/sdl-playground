@@ -68,7 +68,13 @@ int startGame()
             {
 //                gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
 //                gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
-//                gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 *  (rand() / (RAND_MAX + 1.0)) * 90;
+//                gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 * (rand() / (RAND_MAX + 1.0)) * 90;
+                gameObjects[i].surface = IMG_Load("assets/playerShip1_blue.png");
+                gameObjects[i].texture = SDL_CreateTextureFromSurface(renderer, gameObjects[i].surface);
+                gameObjects[i].rect.x = gameObjects[i].rect.y = 100 + i * 50;
+                gameObjects[i].rect.w = 99;
+                gameObjects[i].rect.h = 75;
+                
                 createGameObject(renderer, gameObjects[i]);
             }
             
@@ -102,6 +108,7 @@ int startGame()
 //                SDL_RenderCopy(renderer, pngTexture, NULL, &pngRect);
                 for (int i = 0; i < GAME_OBJECT_COUNT; i++)
                 {
+                    drawCollider(renderer, gameObjects[i]);
                     drawImage(renderer, gameObjects[i]);
                 }
                 
