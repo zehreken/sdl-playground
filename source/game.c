@@ -69,13 +69,13 @@ int startGame()
 //                gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
 //                gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
 //                gameObjects[i].boxSize.x = gameObjects[i].boxSize.y = 10 * (rand() / (RAND_MAX + 1.0)) * 90;
-                gameObjects[i].surface = IMG_Load("assets/playerShip1_blue.png");
-                gameObjects[i].texture = SDL_CreateTextureFromSurface(renderer, gameObjects[i].surface);
-                gameObjects[i].rect.x = gameObjects[i].rect.y = 100 + i * 50;
-                gameObjects[i].rect.w = 99;
-                gameObjects[i].rect.h = 75;
+//                gameObjects[i].surface = IMG_Load("assets/playerShip1_blue.png");
+//                gameObjects[i].texture = SDL_CreateTextureFromSurface(renderer, gameObjects[i].surface);
+//                gameObjects[i].rect.x = gameObjects[i].rect.y = 100 + i * 50;
+//                gameObjects[i].rect.w = 99;
+//                gameObjects[i].rect.h = 75;
                 
-                createGameObject(renderer, gameObjects[i]);
+                createGameObject(renderer, &gameObjects[i], i);
             }
             
             SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
@@ -168,21 +168,25 @@ void setInput()
     {
         boxes[0].position.y -= deltaTime * SPEED;
         pngRect.y -= 1;
+        gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
         pngRect.x -= 1;
+        gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
         pngRect.y += 1;
+        gameObjects[0].rect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
         pngRect.x += 1;
+        gameObjects[0].rect.x += 1;
     }
 }
 

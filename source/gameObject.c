@@ -1,13 +1,13 @@
 #include "gameObject.h"
 #include "SDL2_image/SDL_image.h"
 
-void createGameObject(SDL_Renderer* renderer, GameObject gameObject)
+void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, int i)
 {
-    gameObject.surface = IMG_Load("assets/playerShip1_blue.png");
-    gameObject.texture = SDL_CreateTextureFromSurface(renderer, gameObject.surface);
-    gameObject.rect.x = gameObject.rect.y = 400;
-    gameObject.rect.w = 99;
-    gameObject.rect.h = 75;
+    gameObject->surface = IMG_Load("assets/playerShip1_blue.png");
+    gameObject->texture = SDL_CreateTextureFromSurface(renderer, gameObject->surface);
+    gameObject->rect.x = gameObject->rect.y = 100 + i * 50;
+    gameObject->rect.w = 99;
+    gameObject->rect.h = 75;
 }
 
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
