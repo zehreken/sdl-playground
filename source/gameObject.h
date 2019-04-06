@@ -10,9 +10,10 @@ typedef struct GameObjectTag
     IntVector2 boxSize;
     SDL_Surface* surface;
     SDL_Texture* texture;
+    SDL_Rect rect;
 } GameObject;
 
-void initGameObject();
+void initGameObject(SDL_Renderer* renderer, GameObject gameObject);
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
 void drawImage(SDL_Renderer* renderer, GameObject GameObject);
 

@@ -7,7 +7,7 @@
 #include "fpsutils.h"
 #include "physics.h"
 
-const int GAME_OBJECT_COUNT = 100;
+const int GAME_OBJECT_COUNT = 10;
 GameObject gameObjects[GAME_OBJECT_COUNT];
 SDL_bool done;
 
