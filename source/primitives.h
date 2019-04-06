@@ -52,8 +52,6 @@ typedef struct Box2DTag
     bool hasCollision;
 } Box2D;
 
-void drawTriangle(SDL_Renderer* renderer, int i);
-void drawTriangle2(SDL_Renderer* renderer, Triangle triangle);
 void drawBox(SDL_Renderer* renderer, Box2D box2D);
 void drawDots(SDL_Renderer* renderer);
 
