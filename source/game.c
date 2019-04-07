@@ -124,6 +124,7 @@ int startGame()
                 getInput();
                 setInput();
                 solvePhysics(boxes, BOX_SIZE);
+                solvePhysicsGame(gameObjects, GAME_OBJECT_COUNT);
                 
                 if (timePerFrame < 0.0166666)
                 {
@@ -169,14 +170,14 @@ void setInput()
         boxes[0].position.y -= deltaTime * SPEED;
         pngRect.y -= 1;
         gameObjects[0].position.y -= deltaTime * SPEED;
-        gameObjects[0].rect.y -= 1;
+//        gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
         pngRect.x -= 1;
         gameObjects[0].position.x -= deltaTime * SPEED;
-        gameObjects[0].rect.x -= 1;
+//        gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {

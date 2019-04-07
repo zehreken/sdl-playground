@@ -11,6 +11,7 @@ typedef struct GameObjectTag
     SDL_Surface* surface;
     SDL_Texture* texture;
     SDL_Rect rect;
+    bool hasCollision;
 } GameObject;
 
 void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, int i);

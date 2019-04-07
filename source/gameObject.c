@@ -16,12 +16,20 @@ void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
     color.r = 255;
     color.g = 255;
     color.b = 255;
-    SDL_Rect pos = gameObject.rect;
+    if (gameObject.hasCollision)
+    {
+        color.r = 0;
+    }
+    SDL_Rect rect;
+    rect.x = gameObject.position.x;
+    rect.y = gameObject.position.y;
+    rect.w = gameObject.rect.w;
+    rect.h = gameObject.rect.h;
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE);
-    SDL_RenderDrawLine(renderer, pos.x, pos.y, pos.x, pos.y + pos.h);
-    SDL_RenderDrawLine(renderer, pos.x, pos.y, pos.x + pos.w, pos.y);
-    SDL_RenderDrawLine(renderer, pos.x + pos.w, pos.y, pos.x + pos.w, pos.y + pos.h);
-    SDL_RenderDrawLine(renderer, pos.x, pos.y + pos.h, pos.x + pos.w, pos.y + pos.h);
+    SDL_RenderDrawLine(renderer, rect.x, rect.y, rect.x, rect.y + rect.h);
+    SDL_RenderDrawLine(renderer, rect.x, rect.y, rect.x + rect.w, rect.y);
+    SDL_RenderDrawLine(renderer, rect.x + rect.w, rect.y, rect.x + rect.w, rect.y + rect.h);
+    SDL_RenderDrawLine(renderer, rect.x, rect.y + rect.h, rect.x + rect.w, rect.y + rect.h);
 }
 
 void drawImage(SDL_Renderer* renderer, GameObject gameObject)
