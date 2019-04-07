@@ -26,5 +26,7 @@ void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
 
 void drawImage(SDL_Renderer* renderer, GameObject gameObject)
 {
+    gameObject.rect.x = gameObject.position.x;
+    gameObject.rect.y = gameObject.position.y;
     SDL_RenderCopy(renderer, gameObject.texture, NULL, &gameObject.rect);
 }

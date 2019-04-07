@@ -168,25 +168,29 @@ void setInput()
     {
         boxes[0].position.y -= deltaTime * SPEED;
         pngRect.y -= 1;
+        gameObjects[0].position.y -= deltaTime * SPEED;
         gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
         pngRect.x -= 1;
+        gameObjects[0].position.x -= deltaTime * SPEED;
         gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
         pngRect.y += 1;
-        gameObjects[0].rect.y += 1;
+        gameObjects[0].position.y += deltaTime * SPEED;
+//        gameObjects[0].rect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
         pngRect.x += 1;
-        gameObjects[0].rect.x += 1;
+        gameObjects[0].position.x += deltaTime * SPEED;
+//        gameObjects[0].rect.x += 1;
     }
 }
 
