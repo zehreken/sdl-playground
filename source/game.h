@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "SDL2/SDL.h"
+#include "background.h"
 
 // Variables
 SDL_Window* window;

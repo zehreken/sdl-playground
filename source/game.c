@@ -64,6 +64,8 @@ int startGame()
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
             
+            init_bg(renderer);
+            
             for (int i = 0; i < GAME_OBJECT_COUNT; i++)
             {
 //                gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
@@ -92,6 +94,9 @@ int startGame()
                 start = clock();
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
+                
+                // Background
+                update_bg(deltaTime);
                 
                 // Boxes
                 for (int i = 0; i < BOX_SIZE; i++)
