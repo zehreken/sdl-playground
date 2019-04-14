@@ -1,11 +1,11 @@
 #include "gameObject.h"
 #include "SDL2_image/SDL_image.h"
 
-void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[], int i)
+void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[])
 {
     gameObject->surface = IMG_Load(img);
     gameObject->texture = SDL_CreateTextureFromSurface(renderer, gameObject->surface);
-    gameObject->rect.x = gameObject->rect.y = 100 + i * 50;
+//    gameObject->rect.x = gameObject->rect.y = 0;
     SDL_QueryTexture(gameObject->texture, NULL, NULL, &gameObject->rect.w, &gameObject->rect.h);
 }
 

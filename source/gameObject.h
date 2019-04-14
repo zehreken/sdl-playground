@@ -14,7 +14,7 @@ typedef struct GameObjectTag
     bool hasCollision;
 } GameObject;
 
-void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[], int i);
+void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[]);
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
 void drawImage(SDL_Renderer* renderer, GameObject GameObject);
 

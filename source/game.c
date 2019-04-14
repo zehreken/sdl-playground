@@ -77,7 +77,7 @@ int startGame()
 //                gameObjects[i].rect.w = 99;
 //                gameObjects[i].rect.h = 75;
                 
-                createGameObject(renderer, &gameObjects[i], "assets/playerShip1_blue.png", i);
+                createGameObject(renderer, &gameObjects[i], "assets/playerShip1_blue.png");
             }
             
             SDL_Color color = { 255, 255, 255, 255 };
@@ -96,7 +96,7 @@ int startGame()
                 calculateFps(deltaTime);
                 
                 // Background
-                update_bg(deltaTime);
+                update_bg(renderer, deltaTime);
                 
                 // Boxes
                 for (int i = 0; i < BOX_SIZE; i++)
