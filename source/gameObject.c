@@ -6,8 +6,7 @@ void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, int i)
     gameObject->surface = IMG_Load("assets/playerShip1_blue.png");
     gameObject->texture = SDL_CreateTextureFromSurface(renderer, gameObject->surface);
     gameObject->rect.x = gameObject->rect.y = 100 + i * 50;
-    gameObject->rect.w = 99;
-    gameObject->rect.h = 75;
+    SDL_QueryTexture(gameObject->texture, NULL, NULL, &gameObject->rect.w, &gameObject->rect.h);
 }
 
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
