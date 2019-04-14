@@ -75,14 +75,8 @@ int startGame()
 //                gameObjects[i].rect.w = 99;
 //                gameObjects[i].rect.h = 75;
                 
-                createGameObject(renderer, &gameObjects[i], i);
+                createGameObject(renderer, &gameObjects[i], "assets/playerShip1_blue.png", i);
             }
-            
-            SDL_Surface* pngSurface = IMG_Load("assets/playerShip1_blue.png");
-            SDL_Texture* pngTexture = SDL_CreateTextureFromSurface(renderer, pngSurface);
-            pngRect.x = pngRect.y = 400;
-            pngRect.w = 99;
-            pngRect.h = 75;
             
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
@@ -168,28 +162,24 @@ void setInput()
     if (goUp)
     {
         boxes[0].position.y -= deltaTime * SPEED;
-        pngRect.y -= 1;
         gameObjects[0].position.y -= deltaTime * SPEED;
 //        gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
-        pngRect.x -= 1;
         gameObjects[0].position.x -= deltaTime * SPEED;
 //        gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
-        pngRect.y += 1;
         gameObjects[0].position.y += deltaTime * SPEED;
 //        gameObjects[0].rect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
-        pngRect.x += 1;
         gameObjects[0].position.x += deltaTime * SPEED;
 //        gameObjects[0].rect.x += 1;
     }
