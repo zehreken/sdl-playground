@@ -25,6 +25,8 @@ double deltaTime;
 void getInput();
 void setInput();
 
+double totalTime = 0;
+
 int startGame()
 {
     window = NULL;
@@ -94,6 +96,7 @@ int startGame()
                 start = clock();
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
+                totalTime += deltaTime;
                 
                 // Background
                 update_bg(renderer, deltaTime);
@@ -133,8 +136,9 @@ int startGame()
                 {
                     float f = getAverageFps();
                     char c[50];
-                    sprintf(c, "%g", deltaTime);
-                    strcat(c, " deltaTime");
+                    char b[11] = " totalTime";
+                    sprintf(c, "%g", totalTime);
+                    strcat(c, b);
                     timePerFrame = 0;
                     surface = TTF_RenderText_Solid(font, c, color);
                     texture = SDL_CreateTextureFromSurface(renderer, surface);
