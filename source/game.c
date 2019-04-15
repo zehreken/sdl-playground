@@ -93,10 +93,10 @@ int startGame()
             while (!done)
             {
                 deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
+                totalTime += deltaTime;
                 start = clock();
                 timePerFrame = timePerFrame + deltaTime;
                 calculateFps(deltaTime);
-                totalTime += deltaTime;
                 
                 // Background
                 update_bg(renderer, deltaTime);
@@ -106,8 +106,7 @@ int startGame()
                 {
                     drawBox(renderer, boxes[i]);
                 }
-                // PNG
-//                SDL_RenderCopy(renderer, pngTexture, NULL, &pngRect);
+                
                 for (int i = 0; i < GAME_OBJECT_COUNT; i++)
                 {
                     drawCollider(renderer, gameObjects[i]);
