@@ -20,6 +20,12 @@
       location = "group:source/game.c">
    </FileRef>
    <FileRef
+      location = "group:source/playerShip.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/playerShip.c">
+   </FileRef>
+   <FileRef
       location = "group:source/game.h">
    </FileRef>
    <FileRef
