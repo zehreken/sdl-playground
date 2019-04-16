@@ -7,8 +7,9 @@
 #include "fpsutils.h"
 #include "physics.h"
 
-const int GAME_OBJECT_COUNT = 10;
-GameObject gameObjects[GAME_OBJECT_COUNT];
+const int LASER_COUNT = 20;
+GameObject playerShip;
+GameObject gameObjects[LASER_COUNT];
 SDL_bool done;
 
 const int BOX_SIZE = 100;
@@ -42,15 +43,15 @@ int startGame()
     goDown = false;
     goRight = false;
     
-    for (int i = 0; i < BOX_SIZE; i++)
-    {
-        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
-        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
-        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
-        boxes[i].color.r = 255;
-        boxes[i].color.g = 255;
-        boxes[i].color.b = 255;
-    }
+//    for (int i = 0; i < BOX_SIZE; i++)
+//    {
+//        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
+//        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
+//        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
+//        boxes[i].color.r = 255;
+//        boxes[i].color.g = 255;
+//        boxes[i].color.b = 255;
+//    }
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
@@ -67,8 +68,13 @@ int startGame()
                 printf("IMG_Init error");
             
             init_bg(renderer);
+			
+			// Create playerShip
+			createGameObject(renderer, &playerShip, "assets/playerShip1_blue.png");
+			playerShip.position.x = 400;
+			playerShip.position.y = 300;
             
-            for (int i = 0; i < GAME_OBJECT_COUNT; i++)
+            for (int i = 0; i < LASER_COUNT; i++)
             {
 //                gameObjects[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
 //                gameObjects[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
@@ -79,7 +85,7 @@ int startGame()
 //                gameObjects[i].rect.w = 99;
 //                gameObjects[i].rect.h = 75;
                 
-                createGameObject(renderer, &gameObjects[i], "assets/playerShip1_blue.png");
+                createGameObject(renderer, &gameObjects[i], "assets/laserBlue07.png");
             }
             
             SDL_Color color = { 255, 255, 255, 255 };
@@ -106,8 +112,13 @@ int startGame()
                 {
                     drawBox(renderer, boxes[i]);
                 }
-                
-                for (int i = 0; i < GAME_OBJECT_COUNT; i++)
+				
+				// Draw playerShip
+				drawCollider(renderer, playerShip);
+				drawImage(renderer, playerShip);
+				
+				// Draw lasers
+                for (int i = 0; i < LASER_COUNT; i++)
                 {
                     drawCollider(renderer, gameObjects[i]);
                     drawImage(renderer, gameObjects[i]);
@@ -125,7 +136,7 @@ int startGame()
                 getInput();
                 setInput();
                 solvePhysics(boxes, BOX_SIZE);
-                solvePhysicsGame(gameObjects, GAME_OBJECT_COUNT);
+                solvePhysicsGame(gameObjects, LASER_COUNT);
                 
                 if (timePerFrame < 0.0166666)
                 {
@@ -170,25 +181,25 @@ void setInput()
     if (goUp)
     {
         boxes[0].position.y -= deltaTime * SPEED;
-        gameObjects[0].position.y -= deltaTime * SPEED;
+        playerShip.position.y -= deltaTime * SPEED;
 //        gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
         boxes[0].position.x -= deltaTime * SPEED;
-        gameObjects[0].position.x -= deltaTime * SPEED;
+        playerShip.position.x -= deltaTime * SPEED;
 //        gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {
         boxes[0].position.y += deltaTime * SPEED;
-        gameObjects[0].position.y += deltaTime * SPEED;
+        playerShip.position.y += deltaTime * SPEED;
 //        gameObjects[0].rect.y += 1;
     }
     if (goRight)
     {
         boxes[0].position.x += deltaTime * SPEED;
-        gameObjects[0].position.x += deltaTime * SPEED;
+        playerShip.position.x += deltaTime * SPEED;
 //        gameObjects[0].rect.x += 1;
     }
 }
