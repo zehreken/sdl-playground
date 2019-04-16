@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:source/background.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/background.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/constants.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/fpsutils.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/fpsutils.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/game.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/game.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/gameObject.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/gameObject.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/linkedList.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/linkedList.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/Makefile">
+   </FileRef>
+   <FileRef
+      location = "group:source/miniBus.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/miniBus.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/physics.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/physics.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/primitives.c">
+   </FileRef>
+   <FileRef
+      location = "group:source/primitives.h">
+   </FileRef>
+   <FileRef
+      location = "container:source/main.c">
+   </FileRef>
+</Workspace>
