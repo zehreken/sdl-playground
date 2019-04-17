@@ -74,7 +74,7 @@ void getInput()
                 {
                     goRight = false;
                 }
-                if (event.key.keysym.sym == SDLK_c)
+                if (event.key.keysym.sym == SDLK_SPACE)
                 {
                     fireLaserBeam(playerShip.position);
                 }
