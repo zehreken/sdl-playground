@@ -1,6 +1,7 @@
 #include "playerShip.h"
 #include "constants.h"
 #include "game.h"
+#include "laserBeam.h"
 
 GameObject playerShip;
 bool goUp;
@@ -72,6 +73,10 @@ void getInput()
                 if (event.key.keysym.sym == SDLK_d)
                 {
                     goRight = false;
+                }
+                if (event.key.keysym.sym == SDLK_c)
+                {
+                    fireLaserBeam(playerShip.position);
                 }
                 break;
             case SDL_QUIT:

@@ -5,6 +5,6 @@
 
 void initLaserBeam(SDL_Renderer* renderer);
 void fireLaserBeam();
-void updateLaserBeam(SDL_Renderer* renderer);
+void updateLaserBeam(SDL_Renderer* renderer, double deltaTime);
 
 #endif

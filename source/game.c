@@ -98,7 +98,7 @@ int startGame()
                 updatePlayerShip(renderer);
 				
 				// Draw lasers
-                updateLaserBeam(renderer);
+                updateLaserBeam(renderer, deltaTime);
                 
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);

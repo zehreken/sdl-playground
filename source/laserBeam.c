@@ -2,26 +2,44 @@
 #include "gameObject.h"
 
 static const int LASER_BEAM_SIZE = 20;
-GameObject laserBeams[LASER_BEAM_SIZE];
+static GameObject laserBeams[LASER_BEAM_SIZE];
+static bool laserBeamActive[LASER_BEAM_SIZE];
 
 void initLaserBeam(SDL_Renderer* renderer)
 {
     for (int i = 0; i < LASER_BEAM_SIZE; i++)
     {
         createGameObject(renderer, &laserBeams[i], "assets/laserBlue07.png");
+        laserBeamActive[i] = false;
     }
 }
 
-void fireLaserBeam()
-{
-    
-}
-
-void updateLaserBeam(SDL_Renderer* renderer)
+void fireLaserBeam(Vector2 position)
 {
     for (int i = 0; i < LASER_BEAM_SIZE; i++)
     {
-        drawCollider(renderer, laserBeams[i]);
-        drawImage(renderer, laserBeams[i]);
+        if (!laserBeamActive[i])
+        {
+            laserBeamActive[i] = true;
+            laserBeams[i].position = position;
+            return;
+        }
+    }
+}
+
+void updateLaserBeam(SDL_Renderer* renderer, double deltaTime)
+{
+    for (int i = 0; i < LASER_BEAM_SIZE; i++)
+    {
+        if (laserBeamActive[i])
+        {
+            drawCollider(renderer, laserBeams[i]);
+            drawImage(renderer, laserBeams[i]);
+            laserBeams[i].position.y -= deltaTime * 500;
+            if (laserBeams[i].position.y < 0)
+            {
+                laserBeamActive[i] = false;
+            }
+        }
     }
 }
