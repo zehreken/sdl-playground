@@ -8,6 +8,7 @@
 #include "physics.h"
 #include "background.h"
 #include "playerShip.h"
+#include "laserBeam.h"
 
 const int LASER_COUNT = 20;
 GameObject gameObjects[LASER_COUNT];
@@ -62,14 +63,11 @@ int startGame()
             
             initBg(renderer);
 			
-			// Create playerShip
+			// Init playerShip
             initPlayerShip(renderer);
             
-            // Create lasers
-            for (int i = 0; i < LASER_COUNT; i++)
-            {
-                createGameObject(renderer, &gameObjects[i], "assets/laserBlue07.png");
-            }
+            // Init laserbeams
+            initLaserBeam(renderer);
             
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
@@ -100,11 +98,7 @@ int startGame()
                 updatePlayerShip(renderer);
 				
 				// Draw lasers
-                for (int i = 0; i < LASER_COUNT; i++)
-                {
-                    drawCollider(renderer, gameObjects[i]);
-                    drawImage(renderer, gameObjects[i]);
-                }
+                updateLaserBeam(renderer);
                 
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
