@@ -6,20 +6,18 @@
 #include "time.h"
 #include "fpsutils.h"
 #include "physics.h"
+#include "background.h"
+#include "playerShip.h"
 
 const int LASER_COUNT = 20;
-GameObject playerShip;
 GameObject gameObjects[LASER_COUNT];
-SDL_bool done;
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
 SDL_Rect pngRect;
 
-bool goUp;
-bool goLeft;
-bool goDown;
-bool goRight;
+SDL_Window* window;
+SDL_Renderer* renderer;
 
 double deltaTime;
 
@@ -37,11 +35,6 @@ int startGame()
     clock_t start, end;
     start = clock();
     double timePerFrame = 0;
-    
-    goUp = false;
-    goLeft = false;
-    goDown = false;
-    goRight = false;
     
 //    for (int i = 0; i < BOX_SIZE; i++)
 //    {
@@ -67,13 +60,12 @@ int startGame()
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
             
-            init_bg(renderer);
+            initBg(renderer);
 			
 			// Create playerShip
-			createGameObject(renderer, &playerShip, "assets/playerShip1_blue.png");
-			playerShip.position.x = 400;
-			playerShip.position.y = 300;
+            initPlayerShip(renderer);
             
+            // Create lasers
             for (int i = 0; i < LASER_COUNT; i++)
             {
                 createGameObject(renderer, &gameObjects[i], "assets/laserBlue07.png");
@@ -96,17 +88,16 @@ int startGame()
                 calculateFps(deltaTime);
                 
                 // Background
-                update_bg(renderer, deltaTime);
+                updateBg(renderer, deltaTime);
                 
                 // Boxes
                 for (int i = 0; i < BOX_SIZE; i++)
                 {
                     drawBox(renderer, boxes[i]);
                 }
-				
-				// Draw playerShip
-				drawCollider(renderer, playerShip);
-				drawImage(renderer, playerShip);
+                
+                // Update playerShip
+                updatePlayerShip(renderer);
 				
 				// Draw lasers
                 for (int i = 0; i < LASER_COUNT; i++)
@@ -166,84 +157,84 @@ int startGame()
     return 0;
 }
 
-void setInput()
-{
-    float deltaTime = 0.001;
-    if (goUp)
-    {
-        boxes[0].position.y -= deltaTime * SPEED;
-        playerShip.position.y -= deltaTime * SPEED;
-//        gameObjects[0].rect.y -= 1;
-    }
-    if (goLeft)
-    {
-        boxes[0].position.x -= deltaTime * SPEED;
-        playerShip.position.x -= deltaTime * SPEED;
-//        gameObjects[0].rect.x -= 1;
-    }
-    if (goDown)
-    {
-        boxes[0].position.y += deltaTime * SPEED;
-        playerShip.position.y += deltaTime * SPEED;
-//        gameObjects[0].rect.y += 1;
-    }
-    if (goRight)
-    {
-        boxes[0].position.x += deltaTime * SPEED;
-        playerShip.position.x += deltaTime * SPEED;
-//        gameObjects[0].rect.x += 1;
-    }
-}
+//void setInput()
+//{
+//    float deltaTime = 0.001;
+//    if (goUp)
+//    {
+//        boxes[0].position.y -= deltaTime * SPEED;
+//        playerShip.position.y -= deltaTime * SPEED;
+////        gameObjects[0].rect.y -= 1;
+//    }
+//    if (goLeft)
+//    {
+//        boxes[0].position.x -= deltaTime * SPEED;
+//        playerShip.position.x -= deltaTime * SPEED;
+////        gameObjects[0].rect.x -= 1;
+//    }
+//    if (goDown)
+//    {
+//        boxes[0].position.y += deltaTime * SPEED;
+//        playerShip.position.y += deltaTime * SPEED;
+////        gameObjects[0].rect.y += 1;
+//    }
+//    if (goRight)
+//    {
+//        boxes[0].position.x += deltaTime * SPEED;
+//        playerShip.position.x += deltaTime * SPEED;
+////        gameObjects[0].rect.x += 1;
+//    }
+//}
 
-void getInput()
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-            case SDL_KEYDOWN:
-                if (event.key.keysym.sym == SDLK_w)
-                {
-                    goUp = true;
-                }
-                if (event.key.keysym.sym == SDLK_a)
-                {
-                    goLeft = true;
-                }
-                if (event.key.keysym.sym == SDLK_s)
-                {
-                    goDown = true;
-                }
-                if (event.key.keysym.sym == SDLK_d)
-                {
-                    goRight = true;
-                }
-                break;
-            case SDL_KEYUP:
-                if (event.key.keysym.sym == SDLK_w)
-                {
-                    goUp = false;
-                }
-                if (event.key.keysym.sym == SDLK_a)
-                {
-                    goLeft = false;
-                }
-                if (event.key.keysym.sym == SDLK_s)
-                {
-                    goDown = false;
-                }
-                if (event.key.keysym.sym == SDLK_d)
-                {
-                    goRight = false;
-                }
-                break;
-            case SDL_QUIT:
-                done = SDL_TRUE;
-                break;
-        }
-    }
-}
+//void getInput()
+//{
+//    SDL_Event event;
+//    while (SDL_PollEvent(&event))
+//    {
+//        switch (event.type)
+//        {
+//            case SDL_KEYDOWN:
+//                if (event.key.keysym.sym == SDLK_w)
+//                {
+//                    goUp = true;
+//                }
+//                if (event.key.keysym.sym == SDLK_a)
+//                {
+//                    goLeft = true;
+//                }
+//                if (event.key.keysym.sym == SDLK_s)
+//                {
+//                    goDown = true;
+//                }
+//                if (event.key.keysym.sym == SDLK_d)
+//                {
+//                    goRight = true;
+//                }
+//                break;
+//            case SDL_KEYUP:
+//                if (event.key.keysym.sym == SDLK_w)
+//                {
+//                    goUp = false;
+//                }
+//                if (event.key.keysym.sym == SDLK_a)
+//                {
+//                    goLeft = false;
+//                }
+//                if (event.key.keysym.sym == SDLK_s)
+//                {
+//                    goDown = false;
+//                }
+//                if (event.key.keysym.sym == SDLK_d)
+//                {
+//                    goRight = false;
+//                }
+//                break;
+//            case SDL_QUIT:
+//                done = SDL_TRUE;
+//                break;
+//        }
+//    }
+//}
 
 void drawFPS()
 {

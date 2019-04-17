@@ -5,7 +5,7 @@ const int BACKGROUND_COLUMN = 4;
 const int BACKGROUND_SPEED = 400;
 GameObject bgObjects[BACKGROUND_ROW][BACKGROUND_COLUMN];
 
-void init_bg(SDL_Renderer* renderer)
+void initBg(SDL_Renderer* renderer)
 {
     for (int i = 0; i < BACKGROUND_ROW; i++)
     {
@@ -18,7 +18,7 @@ void init_bg(SDL_Renderer* renderer)
     }
 }
 
-void update_bg(SDL_Renderer* renderer, double deltaTime)
+void updateBg(SDL_Renderer* renderer, double deltaTime)
 {
     for (int i = 0; i < BACKGROUND_ROW; i++)
     {

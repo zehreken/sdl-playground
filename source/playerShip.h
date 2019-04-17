@@ -1,7 +1,9 @@
 #ifndef playerShip_h
 #define playerShip_h
 
-void initPlayerShip();
-void updatePlayerShip();
+#include "gameObject.h"
+
+void initPlayerShip(SDL_Renderer* renderer);
+void updatePlayerShip(SDL_Renderer* renderer);
 
 #endif

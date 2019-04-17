@@ -4,7 +4,7 @@
 #include "SDL2/SDL.h"
 #include "gameObject.h"
 
-void init_bg(SDL_Renderer* renderer);
-void update_bg(SDL_Renderer* renderer, double deltaTime);
+void initBg(SDL_Renderer* renderer);
+void updateBg(SDL_Renderer* renderer, double deltaTime);
 
 #endif
