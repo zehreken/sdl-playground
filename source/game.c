@@ -10,9 +10,6 @@
 #include "laserBeam.h"
 #include "timeUtils.h"
 
-const int LASER_COUNT = 20;
-GameObject gameObjects[LASER_COUNT];
-
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
 SDL_Rect pngRect;
@@ -111,7 +108,7 @@ int startGame()
                 getInput();
                 setInput();
                 solvePhysics(boxes, BOX_SIZE);
-                solvePhysicsGame(gameObjects, LASER_COUNT);
+//                solvePhysicsGame(gameObjects, LASER_COUNT);
                 
                 if (timePerFrame < 0.0166666)
                 {
@@ -148,100 +145,4 @@ int startGame()
     IMG_Quit();
     SDL_Quit();
     return 0;
-}
-
-//void setInput()
-//{
-//    float deltaTime = 0.001;
-//    if (goUp)
-//    {
-//        boxes[0].position.y -= deltaTime * SPEED;
-//        playerShip.position.y -= deltaTime * SPEED;
-////        gameObjects[0].rect.y -= 1;
-//    }
-//    if (goLeft)
-//    {
-//        boxes[0].position.x -= deltaTime * SPEED;
-//        playerShip.position.x -= deltaTime * SPEED;
-////        gameObjects[0].rect.x -= 1;
-//    }
-//    if (goDown)
-//    {
-//        boxes[0].position.y += deltaTime * SPEED;
-//        playerShip.position.y += deltaTime * SPEED;
-////        gameObjects[0].rect.y += 1;
-//    }
-//    if (goRight)
-//    {
-//        boxes[0].position.x += deltaTime * SPEED;
-//        playerShip.position.x += deltaTime * SPEED;
-////        gameObjects[0].rect.x += 1;
-//    }
-//}
-
-//void getInput()
-//{
-//    SDL_Event event;
-//    while (SDL_PollEvent(&event))
-//    {
-//        switch (event.type)
-//        {
-//            case SDL_KEYDOWN:
-//                if (event.key.keysym.sym == SDLK_w)
-//                {
-//                    goUp = true;
-//                }
-//                if (event.key.keysym.sym == SDLK_a)
-//                {
-//                    goLeft = true;
-//                }
-//                if (event.key.keysym.sym == SDLK_s)
-//                {
-//                    goDown = true;
-//                }
-//                if (event.key.keysym.sym == SDLK_d)
-//                {
-//                    goRight = true;
-//                }
-//                break;
-//            case SDL_KEYUP:
-//                if (event.key.keysym.sym == SDLK_w)
-//                {
-//                    goUp = false;
-//                }
-//                if (event.key.keysym.sym == SDLK_a)
-//                {
-//                    goLeft = false;
-//                }
-//                if (event.key.keysym.sym == SDLK_s)
-//                {
-//                    goDown = false;
-//                }
-//                if (event.key.keysym.sym == SDLK_d)
-//                {
-//                    goRight = false;
-//                }
-//                break;
-//            case SDL_QUIT:
-//                done = SDL_TRUE;
-//                break;
-//        }
-//    }
-//}
-
-void drawFPS()
-{
-//    float f = getAverageFps();
-//    char c[50];
-//    sprintf(c, "%g", deltaTime);
-//    strcat(c, " deltaTime");
-//    timePerFrame = 0;
-//    surface = TTF_RenderText_Solid(font, c, color);
-//    texture = SDL_CreateTextureFromSurface(renderer, surface);
-}
-
-void updateGame()
-{
-//    drawCollider(renderer, gameObjects);
-//    drawImage(renderer, gameObjects[i]);
 }
