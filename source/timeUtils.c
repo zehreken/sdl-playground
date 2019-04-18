@@ -23,5 +23,5 @@ unsigned int getDeltaTime()
 
 double getDeltaTimeInSeconds()
 {
-    return getDeltaTime() / 1000;
+    return (double)getDeltaTime() / 1000;
 }

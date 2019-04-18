@@ -38,7 +38,7 @@ double calculateFps(double deltaTime)
     acc = acc + deltaTime;
     if (acc > 1)
     {
-        printf("fps: %d\n", counter);
+        printf("[fpsUtils.c] fps: %d\n", counter);
         addToCache(counter);
         counter = 0;
         acc = acc - 1;

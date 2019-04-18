@@ -3,12 +3,12 @@
 #include "SDL2_image/SDL_image.h"
 #include "gameObject.h"
 #include "constants.h"
-#include "time.h"
 #include "fpsutils.h"
 #include "physics.h"
 #include "background.h"
 #include "playerShip.h"
 #include "laserBeam.h"
+#include "timeUtils.h"
 
 const int LASER_COUNT = 20;
 GameObject gameObjects[LASER_COUNT];
@@ -20,22 +20,18 @@ SDL_Rect pngRect;
 SDL_Window* window;
 SDL_Renderer* renderer;
 
-double deltaTime;
+double deltaTime = 0;
+double timePerFrame = 0;
+double totalTime = 0;
 
 void getInput();
 void setInput();
-
-double totalTime = 0;
 
 int startGame()
 {
     window = NULL;
     renderer = NULL;
     done = SDL_FALSE;
-    
-    clock_t start, end;
-    start = clock();
-    double timePerFrame = 0;
     
 //    for (int i = 0; i < BOX_SIZE; i++)
 //    {
@@ -46,6 +42,8 @@ int startGame()
 //        boxes[i].color.g = 255;
 //        boxes[i].color.b = 255;
 //    }
+    
+    initTimeUtils();
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
@@ -79,10 +77,10 @@ int startGame()
             // MAIN LOOP
             while (!done)
             {
-                deltaTime = (double) (clock() - start) / CLOCKS_PER_SEC;
-                totalTime += deltaTime;
-                start = clock();
+                updateTimeUtils();
+                deltaTime = getDeltaTimeInSeconds();
                 timePerFrame = timePerFrame + deltaTime;
+                totalTime += deltaTime;
                 calculateFps(deltaTime);
                 
                 // Background
