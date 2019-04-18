@@ -1,4 +1,4 @@
-#include "fpsutils.h"
+#include "fpsUtils.h"
 #include "time.h"
 #include "stdio.h"
 #define CACHE_SIZE 10
@@ -7,7 +7,7 @@ int counter;
 double acc;
 int fpsCache[CACHE_SIZE];
 
-void initFpsutils()
+void initFpsUtils()
 {
     counter = 0;
     acc = 0;

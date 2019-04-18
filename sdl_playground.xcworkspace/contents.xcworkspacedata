@@ -11,10 +11,10 @@
       location = "group:source/constants.h">
    </FileRef>
    <FileRef
-      location = "group:source/fpsutils.c">
+      location = "group:/Users/zehreken/Development/sdl_playground/source/fpsUtils.c">
    </FileRef>
    <FileRef
-      location = "group:source/fpsutils.h">
+      location = "group:/Users/zehreken/Development/sdl_playground/source/fpsUtils.h">
    </FileRef>
    <FileRef
       location = "group:source/playerShip.h">

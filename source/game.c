@@ -3,7 +3,7 @@
 #include "SDL2_image/SDL_image.h"
 #include "gameObject.h"
 #include "constants.h"
-#include "fpsutils.h"
+#include "fpsUtils.h"
 #include "physics.h"
 #include "background.h"
 #include "playerShip.h"
@@ -59,6 +59,7 @@ int startGame()
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
             
+            // Init background
             initBg(renderer);
 			
 			// Init playerShip
