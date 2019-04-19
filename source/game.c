@@ -9,6 +9,7 @@
 #include "playerShip.h"
 #include "laserBeam.h"
 #include "timeUtils.h"
+#include "enemyShips.h"
 
 const int BOX_SIZE = 100;
 Box2D boxes[BOX_SIZE];
@@ -48,7 +49,7 @@ int startGame()
         {
             if (TTF_Init() == -1)
                 printf("TTF_Init error");
-            TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 8);
+            TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 20);
             if (!font)
                 printf("Font loading error");
             
@@ -59,11 +60,14 @@ int startGame()
             // Init background
             initBg(renderer);
 			
-			// Init playerShip
+			// Init player ship
             initPlayerShip(renderer);
             
-            // Init laserbeams
+            // Init laser beams
             initLaserBeam(renderer);
+            
+            // Init enemy ships
+            initEnemyShips(renderer);
             
             SDL_Color color = { 255, 255, 255, 255 };
             SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
@@ -90,11 +94,14 @@ int startGame()
                     drawBox(renderer, boxes[i]);
                 }
                 
-                // Update playerShip
+                // Update player ship
                 updatePlayerShip(renderer, deltaTime);
 				
-				// Draw lasers
+				// Update laser beams
                 updateLaserBeam(renderer, deltaTime);
+                
+                // Update enemy ships
+                updateEnemyShips(renderer, deltaTime);
                 
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
