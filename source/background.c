@@ -18,7 +18,7 @@ void initBg(SDL_Renderer* renderer)
     }
 }
 
-void updateBg(SDL_Renderer* renderer, double deltaTime)
+void updateBg(SDL_Renderer* renderer, float deltaTime)
 {
     for (int i = 0; i < BACKGROUND_ROW; i++)
     {

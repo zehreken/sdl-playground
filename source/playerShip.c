@@ -10,7 +10,7 @@ static bool goDown;
 static bool goRight;
 
 static void getInput();
-static void setInput();
+static void setInput(float deltaTime);
 
 void initPlayerShip(SDL_Renderer* renderer)
 {
@@ -24,7 +24,7 @@ void initPlayerShip(SDL_Renderer* renderer)
     playerShip.position.y = 300;
 }
 
-void updatePlayerShip(SDL_Renderer* renderer, double deltaTime)
+void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
 {
     getInput();
     setInput(deltaTime);
@@ -86,7 +86,7 @@ static void getInput()
     }
 }
 
-static void setInput(double deltaTime)
+static void setInput(float deltaTime)
 {
     if (goUp)
     {

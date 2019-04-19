@@ -27,7 +27,7 @@ void fireLaserBeam(Vector2 position)
     }
 }
 
-void updateLaserBeam(SDL_Renderer* renderer, double deltaTime)
+void updateLaserBeam(SDL_Renderer* renderer, float deltaTime)
 {
     for (int i = 0; i < LASER_BEAM_SIZE; i++)
     {

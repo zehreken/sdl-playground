@@ -3,6 +3,6 @@
 
 void initFpsUtils();
 float getAverageFps();
-double calculateFps(double deltaTime);
+float calculateFps(float deltaTime);
 
 #endif

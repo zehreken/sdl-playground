@@ -5,6 +5,6 @@
 #include "gameObject.h"
 
 void initBg(SDL_Renderer* renderer);
-void updateBg(SDL_Renderer* renderer, double deltaTime);
+void updateBg(SDL_Renderer* renderer, float deltaTime);
 
 #endif

@@ -21,7 +21,7 @@ unsigned int getDeltaTime()
     return deltaTime;
 }
 
-double getDeltaTimeInSeconds()
+float getDeltaTimeInSeconds()
 {
-    return (double)deltaTime / 1000;
+    return (float)deltaTime / 1000;
 }

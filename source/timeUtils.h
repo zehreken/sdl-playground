@@ -4,6 +4,6 @@
 void initTimeUtils();
 void updateTimeUtils();
 unsigned int getDeltaTime();
-double getDeltaTimeInSeconds();
+float getDeltaTimeInSeconds();
 
 #endif

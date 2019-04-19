@@ -4,7 +4,7 @@
 #define CACHE_SIZE 10
 
 int counter;
-double acc;
+float acc;
 int fpsCache[CACHE_SIZE];
 
 void initFpsUtils()
@@ -33,7 +33,7 @@ float getAverageFps()
     return sum / CACHE_SIZE;
 }
 
-double calculateFps(double deltaTime)
+float calculateFps(float deltaTime)
 {
     acc = acc + deltaTime;
     if (acc > 1)

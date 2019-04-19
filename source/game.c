@@ -17,9 +17,9 @@ SDL_Rect pngRect;
 SDL_Window* window;
 SDL_Renderer* renderer;
 
-double deltaTime = 0;
-double timePerFrame = 0;
-double totalTime = 0;
+float deltaTime = 0;
+float timePerFrame = 0;
+float totalTime = 0;
 
 void getInput();
 void setInput();
