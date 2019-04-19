@@ -88,14 +88,14 @@ int startGame()
                 // Background
                 updateBg(renderer, deltaTime);
                 
-                // Update player ship
-                updatePlayerShip(renderer, deltaTime);
-				
-				// Update laser beams
-                updateLaserBeam(renderer, deltaTime);
-                
                 // Update enemy ships
                 updateEnemyShips(renderer, deltaTime);
+                
+                // Update laser beams
+                updateLaserBeam(renderer, deltaTime);
+                
+                // Update player ship
+                updatePlayerShip(renderer, deltaTime);
                 
                 // Text on the top left corner
                 SDL_RenderCopy(renderer, texture, NULL, &textRect);
