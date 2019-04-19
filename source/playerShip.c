@@ -24,10 +24,10 @@ void initPlayerShip(SDL_Renderer* renderer)
     playerShip.position.y = 300;
 }
 
-void updatePlayerShip(SDL_Renderer* renderer)
+void updatePlayerShip(SDL_Renderer* renderer, double deltaTime)
 {
     getInput();
-    setInput();
+    setInput(deltaTime);
     drawCollider(renderer, playerShip);
     drawImage(renderer, playerShip);
 }
@@ -86,31 +86,22 @@ void getInput()
     }
 }
 
-void setInput()
+void setInput(double deltaTime)
 {
-    float deltaTime = 0.001;
     if (goUp)
     {
-//        boxes[0].position.y -= deltaTime * SPEED;
         playerShip.position.y -= deltaTime * SPEED;
-        //        gameObjects[0].rect.y -= 1;
     }
     if (goLeft)
     {
-//        boxes[0].position.x -= deltaTime * SPEED;
         playerShip.position.x -= deltaTime * SPEED;
-        //        gameObjects[0].rect.x -= 1;
     }
     if (goDown)
     {
-//        boxes[0].position.y += deltaTime * SPEED;
         playerShip.position.y += deltaTime * SPEED;
-        //        gameObjects[0].rect.y += 1;
     }
     if (goRight)
     {
-//        boxes[0].position.x += deltaTime * SPEED;
         playerShip.position.x += deltaTime * SPEED;
-        //        gameObjects[0].rect.x += 1;
     }
 }

@@ -91,7 +91,7 @@ int startGame()
                 }
                 
                 // Update playerShip
-                updatePlayerShip(renderer);
+                updatePlayerShip(renderer, deltaTime);
 				
 				// Draw lasers
                 updateLaserBeam(renderer, deltaTime);
@@ -105,8 +105,6 @@ int startGame()
                 // Clears everything, I still don't understand how this works
                 SDL_RenderClear(renderer);
                 
-                getInput();
-                setInput();
                 solvePhysics(boxes, BOX_SIZE);
 //                solvePhysicsGame(gameObjects, LASER_COUNT);
                 

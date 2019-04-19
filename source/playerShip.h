@@ -4,6 +4,6 @@
 #include "gameObject.h"
 
 void initPlayerShip(SDL_Renderer* renderer);
-void updatePlayerShip(SDL_Renderer* renderer);
+void updatePlayerShip(SDL_Renderer* renderer, double deltaTime);
 
 #endif
