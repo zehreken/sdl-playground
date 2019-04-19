@@ -3,9 +3,9 @@
 
 #include "stdbool.h"
 #include "primitives.h"
+#include "gameObject.h"
 
-void solveCollision(Box2D *a, Box2D *b);
-void solvePhysics(Box2D *boxes, int size);
-void solvePhysicsGame();
+void solvePhysics(Box2D* boxes, int size);
+void solvePhysicsGame(GameObject* a, int size_a, GameObject* b, int size_b);
 
 #endif

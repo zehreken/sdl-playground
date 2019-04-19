@@ -16,7 +16,8 @@ void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
     color.b = 255;
     if (gameObject.hasCollision)
     {
-        color.r = 0;
+        color.g = 0;
+        color.b = 0;
     }
     SDL_Rect rect;
     rect.x = gameObject.position.x;

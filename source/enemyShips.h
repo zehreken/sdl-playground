@@ -5,5 +5,6 @@
 
 void initEnemyShips(SDL_Renderer* renderer);
 void updateEnemyShips(SDL_Renderer* renderer, float deltaTime);
+GameObject* getEnemyShips();
 
 #endif

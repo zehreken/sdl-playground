@@ -1,5 +1,4 @@
 #include "laserBeam.h"
-#include "gameObject.h"
 
 static const int LASER_BEAM_SIZE = 20;
 static GameObject laserBeams[LASER_BEAM_SIZE];
@@ -35,11 +34,16 @@ void updateLaserBeam(SDL_Renderer* renderer, float deltaTime)
         {
             drawCollider(renderer, laserBeams[i]);
             drawImage(renderer, laserBeams[i]);
-            laserBeams[i].position.y -= deltaTime * 700;
+            laserBeams[i].position.y -= deltaTime * 70;
             if (laserBeams[i].position.y < 0)
             {
                 laserBeamActive[i] = false;
             }
         }
     }
+}
+
+GameObject* getLaserBeams()
+{
+    return laserBeams;
 }

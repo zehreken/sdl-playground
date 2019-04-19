@@ -1,5 +1,4 @@
 #include "enemyShips.h"
-#include "gameObject.h"
 
 const int ENEMY_SIZE = 8;
 static GameObject enemyShips[ENEMY_SIZE];
@@ -20,4 +19,9 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
         drawCollider(renderer, enemyShips[i]);
         drawImage(renderer, enemyShips[i]);
     }
+}
+
+GameObject* getEnemyShips()
+{
+    return enemyShips;
 }

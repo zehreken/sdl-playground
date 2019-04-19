@@ -11,9 +11,9 @@
 #include "timeUtils.h"
 #include "enemyShips.h"
 
-const int BOX_SIZE = 100;
-Box2D boxes[BOX_SIZE];
-SDL_Rect pngRect;
+//const int BOX_SIZE = 100;
+//Box2D boxes[BOX_SIZE];
+//SDL_Rect pngRect;
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -88,12 +88,6 @@ int startGame()
                 // Background
                 updateBg(renderer, deltaTime);
                 
-                // Boxes
-                for (int i = 0; i < BOX_SIZE; i++)
-                {
-                    drawBox(renderer, boxes[i]);
-                }
-                
                 // Update player ship
                 updatePlayerShip(renderer, deltaTime);
 				
@@ -112,8 +106,9 @@ int startGame()
                 // Clears everything, I still don't understand how this works
                 SDL_RenderClear(renderer);
                 
-                solvePhysics(boxes, BOX_SIZE);
+//                solvePhysics(boxes, BOX_SIZE);
 //                solvePhysicsGame(gameObjects, LASER_COUNT);
+                solvePhysicsGame(getLaserBeams(), 20, getEnemyShips(), 8);
                 
                 if (timePerFrame < 0.0166666)
                 {

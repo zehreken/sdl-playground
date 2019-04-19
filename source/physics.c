@@ -1,7 +1,6 @@
 #include "physics.h"
-#include "gameObject.h"
 
-void solveCollision(Box2D *a, Box2D *b)
+static void solveCollision(Box2D* a, Box2D* b)
 {
     if (a->position.x < b->position.x + b->size.x &&
         a->position.x + a->size.x > b->position.x &&
@@ -42,18 +41,23 @@ void solveCollisionGame(GameObject* a, GameObject* b)
     }
     else
     {
-        b->hasCollision = false;
+//        a->hasCollision = false;
+//        b->hasCollision = false;
     }
 }
 
-void solvePhysicsGame(GameObject gameObjects[], int size)
+void solvePhysicsGame(GameObject* a, int size_a, GameObject* b, int size_b)
 {
-    gameObjects[0].hasCollision = false;
-    for (int i = 0; i < 1; i++)
+//    a[0].hasCollision = false; // What is this for?
+    for (int i = 0; i < size_a; i++)
     {
-        for (int j = i + 1; j < size; j++)
+        for (int j = 0; j < size_b; j++)
         {
-            solveCollisionGame(&gameObjects[i], &gameObjects[j]);
+//            a[i].hasCollision = false;
+//            b[j].hasCollision = false;
+            if (i == 0 && j == 4)
+                printf("[physics.c] %d %f\n", a[0].rect.h, b[4].position.x);
+            solveCollisionGame(&a[i], &b[j]);
         }
     }
 }
