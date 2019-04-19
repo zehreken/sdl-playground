@@ -12,6 +12,9 @@ static bool goRight;
 static void getInput();
 static void setInput(float deltaTime);
 
+const float FIRE_RATE = 0.2;
+static float fireRateTimer = 0;
+
 void initPlayerShip(SDL_Renderer* renderer)
 {
     goUp = false;
@@ -30,6 +33,13 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     setInput(deltaTime);
     drawCollider(renderer, playerShip);
     drawImage(renderer, playerShip);
+    
+    fireRateTimer += deltaTime;
+    if (fireRateTimer >= FIRE_RATE)
+    {
+        fireRateTimer = 0;
+        fireLaserBeam(playerShip.position);
+    }
 }
 
 static void getInput()
