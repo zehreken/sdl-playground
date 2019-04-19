@@ -3,14 +3,14 @@
 #include "game.h"
 #include "laserBeam.h"
 
-GameObject playerShip;
-bool goUp;
-bool goLeft;
-bool goDown;
-bool goRight;
+static GameObject playerShip;
+static bool goUp;
+static bool goLeft;
+static bool goDown;
+static bool goRight;
 
-void getInput();
-void setInput();
+static void getInput();
+static void setInput();
 
 void initPlayerShip(SDL_Renderer* renderer)
 {
@@ -32,7 +32,7 @@ void updatePlayerShip(SDL_Renderer* renderer, double deltaTime)
     drawImage(renderer, playerShip);
 }
 
-void getInput()
+static void getInput()
 {
     SDL_Event event;
     while (SDL_PollEvent(&event))
@@ -86,7 +86,7 @@ void getInput()
     }
 }
 
-void setInput(double deltaTime)
+static void setInput(double deltaTime)
 {
     if (goUp)
     {
