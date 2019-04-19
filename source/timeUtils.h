@@ -1,5 +1,5 @@
-#ifndef timeUtils_h
-#define timeUtils_h
+#ifndef TIMEUTILS_H
+#define TIMEUTILS_H
 
 void initTimeUtils();
 void updateTimeUtils();

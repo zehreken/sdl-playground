@@ -1,5 +1,5 @@
-#ifndef enemyShip_h
-#define enemyShip_h
+#ifndef ENEMYSHIPS_H
+#define ENEMYSHIPS_H
 
 #include "gameObject.h"
 

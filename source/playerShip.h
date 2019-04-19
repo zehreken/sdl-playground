@@ -1,5 +1,5 @@
-#ifndef playerShip_h
-#define playerShip_h
+#ifndef PLAYERSHIP_H
+#define PLAYERSHIP_H
 
 #include "gameObject.h"
 

@@ -1,5 +1,5 @@
-#ifndef laserBeam_h
-#define laserBeam_h
+#ifndef LASERBEAM_H
+#define LASERBEAM_H
 
 #include "SDL2/SDL.h"
 
