@@ -12,8 +12,8 @@ void initBg(SDL_Renderer* renderer)
         for (int j = 0; j < BACKGROUND_COLUMN; j++)
         {
             createGameObject(renderer, &bgObjects[i][j], "assets/purple.png");
-            bgObjects[i][j].position.x = bgObjects[i][j].rect.x = j * 256;
-            bgObjects[i][j].position.y = bgObjects[i][j].rect.y = (i - 1) * 256;
+            bgObjects[i][j].position.x = bgObjects[i][j].rect.x = j * bgObjects[i][j].rect.w;
+            bgObjects[i][j].position.y = bgObjects[i][j].rect.y = (i - 1) * bgObjects[i][j].rect.h;
         }
     }
 }

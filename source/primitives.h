@@ -44,6 +44,7 @@ typedef struct TriangleTag
     ColorRGB color;
 } Triangle;
 
+// Obsolete, use GameObject instead
 typedef struct Box2DTag
 {
     Vector2 position;

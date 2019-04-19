@@ -29,6 +29,12 @@
       location = "group:source/game.c">
    </FileRef>
    <FileRef
+      location = "group:/Users/zehreken/Development/sdl_playground/source/enemyShips.h">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/zehreken/Development/sdl_playground/source/enemyShips.c">
+   </FileRef>
+   <FileRef
       location = "group:source/timeUtils.h">
    </FileRef>
    <FileRef

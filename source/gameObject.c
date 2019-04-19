@@ -5,7 +5,6 @@ void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[]
 {
     gameObject->surface = IMG_Load(img);
     gameObject->texture = SDL_CreateTextureFromSurface(renderer, gameObject->surface);
-//    gameObject->rect.x = gameObject->rect.y = 0;
     SDL_QueryTexture(gameObject->texture, NULL, NULL, &gameObject->rect.w, &gameObject->rect.h);
 }
 
