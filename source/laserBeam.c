@@ -34,7 +34,7 @@ void updateLaserBeam(SDL_Renderer* renderer, float deltaTime)
         {
             drawCollider(renderer, laserBeams[i]);
             drawImage(renderer, laserBeams[i]);
-            laserBeams[i].position.y -= deltaTime * 70;
+            laserBeams[i].position.y -= deltaTime * 700;
             if (laserBeams[i].position.y < 0)
             {
                 laserBeamActive[i] = false;
