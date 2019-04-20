@@ -86,7 +86,12 @@ static void getInput()
                 }
                 if (event.key.keysym.sym == SDLK_SPACE)
                 {
-                    fireLaserBeam(playerShip.position);
+                    Vector2 posLeft, posRight;
+                    posLeft.x = playerShip.position.x - 40;
+                    posRight.x = playerShip.position.x + 40;
+                    posLeft.y = posRight.y = playerShip.position.y;
+                    fireLaserBeam(posLeft);
+                    fireLaserBeam(posRight);
                 }
                 break;
             case SDL_QUIT:
