@@ -39,24 +39,23 @@ void solveCollisionGame(GameObject* a, GameObject* b)
         a->hasCollision = true;
         b->hasCollision = true;
     }
-    else
-    {
-//        a->hasCollision = false;
-//        b->hasCollision = false;
-    }
 }
 
 void solvePhysicsGame(GameObject* a, int size_a, GameObject* b, int size_b)
 {
-//    a[0].hasCollision = false; // What is this for?
+    for (int i = 0; i < size_a; i++)
+    {
+        a[i].hasCollision = false;
+    }
+    for (int i = 0; i < size_b; i++)
+    {
+        b[i].hasCollision = false;
+    }
+    
     for (int i = 0; i < size_a; i++)
     {
         for (int j = 0; j < size_b; j++)
         {
-//            a[i].hasCollision = false;
-//            b[j].hasCollision = false;
-            if (i == 0 && j == 4)
-                printf("[physics.c] %d %f\n", a[0].rect.h, b[4].position.x);
             solveCollisionGame(&a[i], &b[j]);
         }
     }
