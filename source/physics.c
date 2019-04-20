@@ -2,10 +2,10 @@
 
 void solveCollisionGame(GameObject* a, GameObject* b)
 {
-    if (a->position.x < b->position.x + b->rect.w &&
-        a->position.x + a->rect.w > b->position.x &&
-        a->position.y < b->position.y + b->rect.h &&
-        a->position.y + a->rect.h > b->position.y)
+    if (a->boxPosition.x < b->boxPosition.x + b->boxSize.x &&
+        a->boxPosition.x + a->boxSize.x > b->boxPosition.x &&
+        a->boxPosition.y < b->boxPosition.y + b->boxSize.y &&
+        a->boxPosition.y + a->boxSize.y > b->boxPosition.y)
     {
         a->hasCollision = true;
         b->hasCollision = true;

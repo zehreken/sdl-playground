@@ -7,6 +7,7 @@
 typedef struct GameObjectTag
 {
     Vector2 position;
+    IntVector2 boxPosition;
     IntVector2 boxSize;
     SDL_Surface* surface;
     SDL_Texture* texture;
@@ -15,7 +16,7 @@ typedef struct GameObjectTag
 } GameObject;
 
 void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[]);
-void drawImage(SDL_Renderer* renderer, GameObject GameObject);
+void drawImage(SDL_Renderer* renderer, GameObject* GameObject);
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
 
 #endif

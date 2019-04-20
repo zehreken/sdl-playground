@@ -32,7 +32,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     getInput();
     setInput(deltaTime);
     drawCollider(renderer, playerShip);
-    drawImage(renderer, playerShip);
+    drawImage(renderer, &playerShip);
     
 //    fireRateTimer += deltaTime;
     if (fireRateTimer >= FIRE_RATE)
