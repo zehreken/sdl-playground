@@ -32,13 +32,14 @@ void updateLaserBeam(SDL_Renderer* renderer, float deltaTime)
     {
         if (laserBeamActive[i])
         {
-            drawCollider(renderer, laserBeams[i]);
-            drawImage(renderer, &laserBeams[i]);
             laserBeams[i].position.y -= deltaTime * 600;
-            if (laserBeams[i].position.y < 0)
+            if (laserBeams[i].position.y < 0 || laserBeams[i].hasCollision)
             {
                 laserBeamActive[i] = false;
+                laserBeams[i].position.x = -10000;
             }
+            drawCollider(renderer, laserBeams[i]);
+            drawImage(renderer, &laserBeams[i]);
         }
     }
 }
