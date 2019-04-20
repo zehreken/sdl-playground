@@ -15,7 +15,7 @@ typedef struct GameObjectTag
 } GameObject;
 
 void createGameObject(SDL_Renderer* renderer, GameObject* gameObject, char img[]);
-void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
 void drawImage(SDL_Renderer* renderer, GameObject GameObject);
+void drawCollider(SDL_Renderer* renderer, GameObject gameObject);
 
 #endif
