@@ -25,14 +25,16 @@ void initPlayerShip(SDL_Renderer* renderer)
     createGameObject(renderer, &playerShip, "assets/playerShip1_blue.png");
     playerShip.position.x = 400;
     playerShip.position.y = 300;
+    playerShip.boxSize.x *= 0.3;
+    playerShip.boxSize.y *= 0.3;
 }
 
 void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
 {
     getInput();
     setInput(deltaTime);
-    drawCollider(renderer, playerShip);
     drawImage(renderer, &playerShip);
+    drawCollider(renderer, playerShip);
     
 //    fireRateTimer += deltaTime;
     if (fireRateTimer >= FIRE_RATE)
