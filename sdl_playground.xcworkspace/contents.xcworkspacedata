@@ -29,6 +29,12 @@
       location = "group:source/scoreController.c">
    </FileRef>
    <FileRef
+      location = "group:source/basicUI.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/basicUI.c">
+   </FileRef>
+   <FileRef
       location = "group:source/game.h">
    </FileRef>
    <FileRef
