@@ -103,19 +103,19 @@ static void getInput()
 
 static void setInput(float deltaTime)
 {
-    if (goUp)
+    if (goUp && playerShip.position.y > 0)
     {
         playerShip.position.y -= deltaTime * SPEED;
     }
-    if (goLeft)
+    if (goLeft && playerShip.position.x > 0)
     {
         playerShip.position.x -= deltaTime * SPEED;
     }
-    if (goDown)
+    if (goDown && playerShip.position.y < HEIGHT)
     {
         playerShip.position.y += deltaTime * SPEED;
     }
-    if (goRight)
+    if (goRight && playerShip.position.x < WIDTH)
     {
         playerShip.position.x += deltaTime * SPEED;
     }
