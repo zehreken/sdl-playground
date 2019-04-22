@@ -3,6 +3,7 @@
 
 void initBasicUI();
 void updateBasicUI();
+void closeFont();
 void quitBasicUI();
 
 #endif

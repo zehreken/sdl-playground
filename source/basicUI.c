@@ -16,7 +16,6 @@ void initBasicUI(SDL_Renderer* renderer)
     if (!font)
         printf("Font loading error");
     
-    
     surface = TTF_RenderText_Solid(font, "testing testing", color);
     texture = SDL_CreateTextureFromSurface(renderer, surface);
     textRect.x = textRect.y = 0;
@@ -39,8 +38,13 @@ void updateBasicUI(SDL_Renderer* renderer)
     SDL_RenderCopy(renderer, texture, NULL, &textRect);
 }
 
-void quitBasicUI()
+void closeFont()
 {
     TTF_CloseFont(font);
+}
+
+void quitBasicUI()
+{
+//    TTF_CloseFont(font);
     TTF_Quit();
 }

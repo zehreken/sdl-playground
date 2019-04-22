@@ -23,28 +23,12 @@ int startGame()
     renderer = NULL;
     done = SDL_FALSE;
     
-//    for (int i = 0; i < BOX_SIZE; i++)
-//    {
-//        boxes[i].position.x = rand() / (RAND_MAX + 1.0) * WIDTH;
-//        boxes[i].position.y = rand() / (RAND_MAX + 1.0) * HEIGHT;
-//        boxes[i].size.x = boxes[i].size.y = 10 + (rand() / (RAND_MAX + 1.0)) * 90;
-//        boxes[i].color.r = 255;
-//        boxes[i].color.g = 255;
-//        boxes[i].color.b = 255;
-//    }
-    
     initTimeUtils();
     
     if (SDL_Init(SDL_INIT_VIDEO) == 0)
     {
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
-//            if (TTF_Init() == -1)
-//                printf("TTF_Init error");
-//            TTF_Font* font = TTF_OpenFont("fonts/emulogic.ttf", 20);
-//            if (!font)
-//                printf("Font loading error");
-            
             int IMG_Flag = 0;
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
@@ -63,13 +47,6 @@ int startGame()
             
             // Init enemy ships
             initEnemyShips(renderer);
-            
-//            SDL_Color color = { 255, 255, 255, 255 };
-//            SDL_Surface* surface = TTF_RenderText_Solid(font, "testing testing", color);
-//            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-//            SDL_Rect textRect;
-//            textRect.x = textRect.y = 0;
-//            SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
             
             // MAIN LOOP
             while (!done)
@@ -124,6 +101,8 @@ int startGame()
 //                    SDL_QueryTexture(texture, NULL, NULL, &textRect.w, &textRect.h);
 //                }
             }
+            
+            closeFont();
         }
         
         if (renderer)
