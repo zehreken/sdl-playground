@@ -1,4 +1,5 @@
 #include "enemyShips.h"
+#include "scoreController.h"
 
 const int ENEMY_SIZE = 8;
 static GameObject enemyShips[ENEMY_SIZE];
@@ -23,6 +24,7 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
         if (enemyShips[i].hasCollision)
         {
             enemyShips[i].position.x = 100000;
+            addScore(20);
         }
         drawImage(renderer, &enemyShips[i]);
         drawCollider(renderer, enemyShips[i]);
