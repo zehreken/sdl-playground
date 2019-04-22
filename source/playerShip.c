@@ -15,6 +15,8 @@ static void setInput(float deltaTime);
 const float FIRE_RATE = 0.2;
 static float fireRateTimer = 0;
 
+static int hitPoint = 100;
+
 void initPlayerShip(SDL_Renderer* renderer)
 {
     goUp = false;
@@ -42,6 +44,11 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
         fireRateTimer = 0;
         fireLaserBeam(playerShip.position);
     }
+}
+
+int getPlayerShipHitPoint()
+{
+    return hitPoint;
 }
 
 static void getInput()
