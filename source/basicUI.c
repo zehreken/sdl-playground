@@ -10,8 +10,6 @@ static SDL_Color color = { 255, 0, 255, 255 };
 
 void initBasicUI(SDL_Renderer* renderer)
 {
-    if (TTF_Init() == -1)
-        printf("TTF_Init error");
     font = TTF_OpenFont("fonts/emulogic.ttf", 20);
     if (!font)
         printf("Font loading error");
@@ -38,13 +36,7 @@ void updateBasicUI(SDL_Renderer* renderer)
     SDL_RenderCopy(renderer, texture, NULL, &textRect);
 }
 
-void closeFont()
-{
-    TTF_CloseFont(font);
-}
-
 void quitBasicUI()
 {
-//    TTF_CloseFont(font);
-    TTF_Quit();
+    TTF_CloseFont(font);
 }

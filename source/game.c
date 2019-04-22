@@ -1,4 +1,5 @@
 #include "game.h"
+#include "SDL2_ttf/SDL_ttf.h"
 #include "SDL2_image/SDL_image.h"
 #include "gameObject.h"
 #include "constants.h"
@@ -29,6 +30,8 @@ int startGame()
     {
         if (SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &window, &renderer) == 0)
         {
+            if (TTF_Init() == -1)
+                printf("TTF_Init error");
             int IMG_Flag = 0;
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
@@ -53,7 +56,7 @@ int startGame()
             {
                 updateTimeUtils();
                 float deltaTime = getDeltaTimeInSeconds();
-                calculateFps(deltaTime);
+//                calculateFps(deltaTime);
                 
                 // Background
                 updateBg(renderer, deltaTime);
@@ -102,7 +105,7 @@ int startGame()
 //                }
             }
             
-            closeFont();
+            quitBasicUI();
         }
         
         if (renderer)
@@ -115,7 +118,7 @@ int startGame()
         }
     }
     
-    quitBasicUI();
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
     return 0;
