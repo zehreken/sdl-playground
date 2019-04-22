@@ -3,6 +3,7 @@
 
 const int ENEMY_SIZE = 8;
 static GameObject enemyShips[ENEMY_SIZE];
+static bool enemyShipActive[ENEMY_SIZE];
 
 void initEnemyShips(SDL_Renderer* renderer)
 {
@@ -13,24 +14,35 @@ void initEnemyShips(SDL_Renderer* renderer)
         enemyShips[i].position.y = -100;
         enemyShips[i].boxSize.x *= 0.5;
         enemyShips[i].boxSize.y *= 0.5;
+        enemyShipActive[i] = true;
     }
+}
+
+void spawnEnemyShip(Vector2 position)
+{
+    
 }
 
 void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
 {
     for (int i = 0; i < ENEMY_SIZE; i++)
     {
-        enemyShips[i].position.y += deltaTime * 20;
-        if (enemyShips[i].hasCollision)
+        if (enemyShipActive[i])
         {
-            enemyShips[i].position.x = 100000;
-            addScore(20);
+            enemyShips[i].position.y += deltaTime * 20;
+            if (enemyShips[i].hasCollision)
+            {
+                enemyShips[i].position.x = 100000;
+                addScore(20);
+                enemyShipActive[i] = false;
+            }
+            drawImage(renderer, &enemyShips[i]);
+            drawCollider(renderer, enemyShips[i]);
         }
-        drawImage(renderer, &enemyShips[i]);
-        drawCollider(renderer, enemyShips[i]);
     }
 }
 
+// Obsolete
 GameObject* getEnemyShips()
 {
     return enemyShips;
