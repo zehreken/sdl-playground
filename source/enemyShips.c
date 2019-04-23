@@ -26,6 +26,7 @@ void spawnEnemyShip(Vector2 position)
         {
             enemyShipActive[i] = true;
             enemyShips[i].position = position;
+            return;
         }
     }
 }
@@ -42,7 +43,6 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
                 enemyShips[i].position.x = 100000;
                 addScore(20);
                 enemyShipActive[i] = false;
-                return;
             }
             drawImage(renderer, &enemyShips[i]);
             drawCollider(renderer, enemyShips[i]);
