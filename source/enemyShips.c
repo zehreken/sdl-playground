@@ -20,7 +20,14 @@ void initEnemyShips(SDL_Renderer* renderer)
 
 void spawnEnemyShip(Vector2 position)
 {
-    
+    for (int i = 0; i < ENEMY_SIZE; i++)
+    {
+        if (!enemyShipActive[i])
+        {
+            enemyShipActive[i] = true;
+            enemyShips[i].position = position;
+        }
+    }
 }
 
 void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
@@ -29,12 +36,13 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
     {
         if (enemyShipActive[i])
         {
-            enemyShips[i].position.y += deltaTime * 20;
+            enemyShips[i].position.y += deltaTime * 50;
             if (enemyShips[i].hasCollision)
             {
                 enemyShips[i].position.x = 100000;
                 addScore(20);
                 enemyShipActive[i] = false;
+                return;
             }
             drawImage(renderer, &enemyShips[i]);
             drawCollider(renderer, enemyShips[i]);

@@ -10,6 +10,7 @@
 #include "laserBeam.h"
 #include "timeUtils.h"
 #include "enemyShips.h"
+#include "enemyController.h"
 #include "basicUI.h"
 
 SDL_Window* window;
@@ -51,6 +52,9 @@ int startGame()
             // Init enemy ships
             initEnemyShips(renderer);
             
+            // Init enemy controller
+            initEnemyController();
+            
             // MAIN LOOP
             while (!done)
             {
@@ -69,6 +73,9 @@ int startGame()
                 
                 // Update player ship
                 updatePlayerShip(renderer, deltaTime);
+                
+                // Update enemy controller
+                updateEnemyController(deltaTime);
                 
                 // Text on the top left corner
 //                SDL_RenderCopy(renderer, texture, NULL, &textRect);

@@ -17,7 +17,7 @@ static SDL_Surface* playerHitPointSurface;
 static SDL_Texture* playerHitPointTexture;
 static SDL_Rect playerHitPointRect;
 
-static const float UI_UPDATE_PERIOD = 1;
+static const float UI_UPDATE_PERIOD = 0.25;
 static float updateTimer = 1;
 
 void initBasicUI(SDL_Renderer* renderer)
