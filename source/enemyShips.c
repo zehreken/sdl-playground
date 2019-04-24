@@ -50,7 +50,6 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
     }
 }
 
-// Obsolete
 GameObject* getEnemyShips()
 {
     return enemyShips;

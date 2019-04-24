@@ -42,7 +42,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     if (fireRateTimer >= FIRE_RATE)
     {
         fireRateTimer = 0;
-        fireLaserBeam(playerShip.position);
+        fireLaserBeam(playerShip.position, false);
     }
 }
 
@@ -99,8 +99,8 @@ static void getInput()
                     posLeft.x = playerShip.position.x - 40;
                     posRight.x = playerShip.position.x + 40;
                     posLeft.y = posRight.y = playerShip.position.y;
-                    fireLaserBeam(posLeft);
-                    fireLaserBeam(posRight);
+                    fireLaserBeam(posLeft, false);
+                    fireLaserBeam(posRight, false);
                 }
                 break;
             case SDL_QUIT:

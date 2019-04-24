@@ -6,7 +6,6 @@
 void initEnemyShips(SDL_Renderer* renderer);
 void spawnEnemyShip(Vector2 position);
 void updateEnemyShips(SDL_Renderer* renderer, float deltaTime);
-// Obsolete
 GameObject* getEnemyShips();
 
 #endif
