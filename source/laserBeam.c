@@ -71,3 +71,8 @@ GameObject* getLaserBeams()
 {
     return laserBeams;
 }
+
+GameObject* getEnemyLaserBeams()
+{
+    return enemyLaserBeams;
+}

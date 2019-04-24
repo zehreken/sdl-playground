@@ -1,6 +1,7 @@
 #include "enemyShips.h"
 #include "scoreController.h"
 #include "constants.h"
+#include "laserBeam.h"
 
 const int ENEMY_SIZE = 8;
 static GameObject enemyShips[ENEMY_SIZE];
@@ -27,6 +28,7 @@ void spawnEnemyShip(Vector2 position)
         {
             enemyShipActive[i] = true;
             enemyShips[i].position = position;
+            fireLaserBeam(position, true);
             return;
         }
     }

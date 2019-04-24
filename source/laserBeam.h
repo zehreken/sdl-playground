@@ -8,5 +8,6 @@ void initLaserBeam(SDL_Renderer* renderer);
 void fireLaserBeam(Vector2 position, bool isEnemy);
 void updateLaserBeam(SDL_Renderer* renderer, float deltaTime);
 GameObject* getLaserBeams();
+GameObject* getEnemyLaserBeams();
 
 #endif

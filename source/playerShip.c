@@ -44,11 +44,21 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
         fireRateTimer = 0;
         fireLaserBeam(playerShip.position, false);
     }
+    
+    if (playerShip.hasCollision)
+    {
+        hitPoint--;
+    }
 }
 
 int getPlayerShipHitPoint()
 {
     return hitPoint;
+}
+
+GameObject* getPlayerShip()
+{
+    return &playerShip;
 }
 
 static void getInput()

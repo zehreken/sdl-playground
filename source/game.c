@@ -93,6 +93,7 @@ int startGame()
 //                solvePhysics(boxes, BOX_SIZE);
 //                solvePhysicsGame(gameObjects, LASER_COUNT);
                 solvePhysicsGame(getLaserBeams(), 20, getEnemyShips(), 8);
+                solvePhysicsGame(getEnemyLaserBeams(), 20, getPlayerShip(), 1);
                 
 //                if (timePerFrame < 0.0166666)
 //                {
