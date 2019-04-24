@@ -17,6 +17,8 @@ static float fireRateTimer = 0;
 
 static int hitPoint = 100;
 
+void fire();
+
 void initPlayerShip(SDL_Renderer* renderer)
 {
     goUp = false;
@@ -38,17 +40,27 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     drawImage(renderer, &playerShip);
     drawCollider(renderer, playerShip);
     
-//    fireRateTimer += deltaTime;
+    fireRateTimer += deltaTime;
     if (fireRateTimer >= FIRE_RATE)
     {
         fireRateTimer = 0;
-        fireLaserBeam(playerShip.position, false);
+        fire();
     }
     
     if (playerShip.hasCollision)
     {
         hitPoint--;
     }
+}
+
+void fire()
+{
+    Vector2 posLeft, posRight;
+    posLeft.x = playerShip.position.x - 40;
+    posRight.x = playerShip.position.x + 40;
+    posLeft.y = posRight.y = playerShip.position.y;
+    fireLaserBeam(posLeft, false);
+    fireLaserBeam(posRight, false);
 }
 
 int getPlayerShipHitPoint()
@@ -105,12 +117,7 @@ static void getInput()
                 }
                 if (event.key.keysym.sym == SDLK_SPACE)
                 {
-                    Vector2 posLeft, posRight;
-                    posLeft.x = playerShip.position.x - 40;
-                    posRight.x = playerShip.position.x + 40;
-                    posLeft.y = posRight.y = playerShip.position.y;
-                    fireLaserBeam(posLeft, false);
-                    fireLaserBeam(posRight, false);
+                    fire();
                 }
                 break;
             case SDL_QUIT:

@@ -2,7 +2,7 @@
 #include "enemyShips.h"
 #include "constants.h"
 
-static const float SPAWN_PERIOD = 1;
+static const float SPAWN_PERIOD = 0.8;
 static float spawnTimer = 0;
 
 void initEnemyController()
@@ -16,6 +16,9 @@ void updateEnemyController(float deltaTime)
     {
         spawnTimer -= SPAWN_PERIOD;
         Vector2 position = {(rand() / (RAND_MAX + 1.0)) * WIDTH, 0};
+        spawnEnemyShip(position);
+        
+        position.x = (rand() / (RAND_MAX + 1.0)) * WIDTH;
         spawnEnemyShip(position);
     }
 }

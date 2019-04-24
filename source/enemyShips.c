@@ -3,7 +3,7 @@
 #include "constants.h"
 #include "laserBeam.h"
 
-const int ENEMY_SIZE = 8;
+const int ENEMY_SIZE = 20;
 static GameObject enemyShips[ENEMY_SIZE];
 static bool enemyShipActive[ENEMY_SIZE];
 
