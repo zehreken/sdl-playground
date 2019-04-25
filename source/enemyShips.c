@@ -40,6 +40,7 @@ void updateEnemyShips(SDL_Renderer* renderer, float deltaTime)
     {
         if (enemyShipActive[i])
         {
+            enemyShips[i].position.x += deltaTime * 10;
             enemyShips[i].position.y += deltaTime * 100;
             if (enemyShips[i].position.y > HEIGHT || enemyShips[i].hasCollision)
             {

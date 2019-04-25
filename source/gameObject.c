@@ -29,12 +29,13 @@ static inline void drawPositionPoint(SDL_Renderer* renderer, GameObject gameObje
 void drawCollider(SDL_Renderer* renderer, GameObject gameObject)
 {
     ColorRGB color;
-    color.r = 255;
+    color.r = 0;
     color.g = 255;
-    color.b = 255;
+    color.b = 0;
     
     if (gameObject.hasCollision)
     {
+        color.r = 255;
         color.g = 0;
         color.b = 0;
     }
