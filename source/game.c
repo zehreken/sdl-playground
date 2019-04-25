@@ -96,6 +96,8 @@ int startGame()
                 solvePhysicsGame(getEnemyLaserBeams(), 20, getPlayerShip(), 1);
 //                solvePhysicsGame(getEnemyShips(), 20, getPlayerShip(), 1);
                 
+                SDL_Delay(10);
+                
 //                if (timePerFrame < 0.0166666)
 //                {
 //                    continue;
