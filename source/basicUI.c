@@ -17,6 +17,10 @@ static SDL_Surface* playerHitPointSurface;
 static SDL_Texture* playerHitPointTexture;
 static SDL_Rect playerHitPointRect;
 
+static SDL_Surface* infoSurface;
+static SDL_Texture* infoTexture;
+static SDL_Rect infoRect;
+
 static const float UI_UPDATE_PERIOD = 0.25;
 static float updateTimer = 1;
 
@@ -57,10 +61,22 @@ void updateBasicUI(SDL_Renderer* renderer)
         SDL_FreeSurface(playerHitPointSurface);
         SDL_QueryTexture(playerHitPointTexture, NULL, NULL, &playerHitPointRect.w, &playerHitPointRect.h);
         playerHitPointRect.x = WIDTH - playerHitPointRect.w;
+        
+        SDL_DestroyTexture(infoTexture);
+        infoSurface = TTF_RenderText_Solid(font, "GAME OVER", color);
+        infoTexture = SDL_CreateTextureFromSurface(renderer, infoSurface);
+        // Free old surface
+        SDL_FreeSurface(infoSurface);
+        SDL_QueryTexture(infoTexture, NULL, NULL, &infoRect.w, &infoRect.h);
+        infoRect.w *= 2;
+        infoRect.h *= 2;
+        infoRect.x = (WIDTH - infoRect.w) / 2;
+        infoRect.y = (HEIGHT - infoRect.h) / 2;
     }
     
     SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
     SDL_RenderCopy(renderer, playerHitPointTexture, NULL, &playerHitPointRect);
+    SDL_RenderCopy(renderer, infoTexture, NULL, &infoRect);
 }
 
 void quitBasicUI()
