@@ -17,7 +17,7 @@ static float fireRateTimer = 0;
 
 static int hitPoint = 100;
 
-void fire();
+static void fire();
 
 void initPlayerShip(SDL_Renderer* renderer)
 {
@@ -57,7 +57,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     }
 }
 
-void fire()
+static void fire()
 {
     Vector2 posLeft, posRight;
     posLeft.x = playerShip.position.x - 40;

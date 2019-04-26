@@ -16,8 +16,9 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 
-void getInput();
-void setInput();
+void start();
+void play();
+void gameOver();
 
 int startGame()
 {
@@ -61,6 +62,19 @@ int startGame()
                 updateTimeUtils();
                 float deltaTime = getDeltaTimeInSeconds();
 //                calculateFps(deltaTime);
+                
+                switch (gameState)
+                {
+                    case START:
+                        start();
+                        break;
+                    case PLAY:
+                        play();
+                        break;
+                    case GAME_OVER:
+                        gameOver();
+                        break;
+                }
                 
                 // Background
                 updateBg(renderer, deltaTime);
@@ -133,4 +147,19 @@ int startGame()
     IMG_Quit();
     SDL_Quit();
     return 0;
+}
+
+void start()
+{
+    printf("start\n");
+}
+
+void play()
+{
+    printf("play\n");
+}
+
+void gameOver()
+{
+    printf("gameOver\n");
 }
