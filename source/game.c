@@ -185,19 +185,12 @@ static void getInput()
                 {
                     fire();
                 }
-                if (event.key.keysym.sym == SDLK_q)
+                else
                 {
-                    switch (gameState)
+                    if (gameState == START || gameState == GAME_OVER)
                     {
-                        case START:
-                            gameState = PLAY;
-                            break;
-                        case PLAY:
-                            gameState = GAME_OVER;
-                            break;
-                        case GAME_OVER:
-                            gameState = START;
-                            break;
+                        // Reset game
+                        gameState = PLAY;
                     }
                 }
                 break;

@@ -22,7 +22,7 @@ static SDL_Texture* infoTexture;
 static SDL_Rect infoRect;
 
 static const float UI_UPDATE_PERIOD = 0.25;
-static float updateTimer = 1;
+static float updateTimer = UI_UPDATE_PERIOD;
 
 void initBasicUI(SDL_Renderer* renderer)
 {
@@ -40,7 +40,17 @@ void drawStartUI(SDL_Renderer* renderer)
     {
         updateTimer -= UI_UPDATE_PERIOD;
         
+        SDL_DestroyTexture(infoTexture);
+        infoSurface = TTF_RenderText_Solid(font, "PRESS ANY KEY\nTO START", color);
+        infoTexture = SDL_CreateTextureFromSurface(renderer, infoSurface);
+        // Free old surface
+        SDL_FreeSurface(infoSurface);
+        SDL_QueryTexture(infoTexture, NULL, NULL, &infoRect.w, &infoRect.h);
+        infoRect.x = (WIDTH - infoRect.w) / 2;
+        infoRect.y = (HEIGHT - infoRect.h) / 2;
     }
+    
+    SDL_RenderCopy(renderer, infoTexture, NULL, &infoRect);
 }
 
 void drawPlayUI(SDL_Renderer* renderer)
