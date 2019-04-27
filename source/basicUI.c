@@ -31,7 +31,19 @@ void initBasicUI(SDL_Renderer* renderer)
         printf("Font loading error");
 }
 
-void updateBasicUI(SDL_Renderer* renderer)
+void drawStartUI(SDL_Renderer* renderer)
+{
+    float deltaTime = getDeltaTimeInSeconds();
+    updateTimer += deltaTime;
+    
+    if (updateTimer >= UI_UPDATE_PERIOD)
+    {
+        updateTimer -= UI_UPDATE_PERIOD;
+        
+    }
+}
+
+void drawPlayUI(SDL_Renderer* renderer)
 {
     float deltaTime = getDeltaTimeInSeconds();
     updateTimer += deltaTime;
@@ -61,6 +73,20 @@ void updateBasicUI(SDL_Renderer* renderer)
         SDL_FreeSurface(playerHitPointSurface);
         SDL_QueryTexture(playerHitPointTexture, NULL, NULL, &playerHitPointRect.w, &playerHitPointRect.h);
         playerHitPointRect.x = WIDTH - playerHitPointRect.w;
+    }
+    
+    SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
+    SDL_RenderCopy(renderer, playerHitPointTexture, NULL, &playerHitPointRect);
+}
+
+void drawEndGameUI(SDL_Renderer* renderer)
+{
+    float deltaTime = getDeltaTimeInSeconds();
+    updateTimer += deltaTime;
+    
+    if (updateTimer >= UI_UPDATE_PERIOD)
+    {
+        updateTimer -= UI_UPDATE_PERIOD;
         
         SDL_DestroyTexture(infoTexture);
         infoSurface = TTF_RenderText_Solid(font, "GAME OVER", color);
@@ -74,8 +100,6 @@ void updateBasicUI(SDL_Renderer* renderer)
         infoRect.y = (HEIGHT - infoRect.h) / 2;
     }
     
-    SDL_RenderCopy(renderer, scoreTexture, NULL, &scoreRect);
-    SDL_RenderCopy(renderer, playerHitPointTexture, NULL, &playerHitPointRect);
     SDL_RenderCopy(renderer, infoTexture, NULL, &infoRect);
 }
 

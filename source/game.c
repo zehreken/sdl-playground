@@ -185,6 +185,21 @@ static void getInput()
                 {
                     fire();
                 }
+                if (event.key.keysym.sym == SDLK_q)
+                {
+                    switch (gameState)
+                    {
+                        case START:
+                            gameState = PLAY;
+                            break;
+                        case PLAY:
+                            gameState = GAME_OVER;
+                            break;
+                        case GAME_OVER:
+                            gameState = START;
+                            break;
+                    }
+                }
                 break;
             case SDL_QUIT:
                 done = SDL_TRUE;
@@ -195,7 +210,7 @@ static void getInput()
 
 void start()
 {
-    
+    drawStartUI(renderer);
 }
 
 void play(float deltaTime)
@@ -212,12 +227,11 @@ void play(float deltaTime)
     // Update enemy controller
     updateEnemyController(deltaTime);
     
-    // Text on the top left corner
-    //                SDL_RenderCopy(renderer, texture, NULL, &textRect);
-    updateBasicUI(renderer);
+    // In game UI
+    drawPlayUI(renderer);
 }
 
 void gameOver()
 {
-    
+    drawEndGameUI(renderer);
 }
