@@ -16,6 +16,7 @@
 SDL_Window* window;
 SDL_Renderer* renderer;
 
+static void getInput();
 void start();
 void play();
 void gameOver();
@@ -59,6 +60,9 @@ int startGame()
             // MAIN LOOP
             while (!done)
             {
+                // Handle input
+                getInput();
+                
                 updateTimeUtils();
                 float deltaTime = getDeltaTimeInSeconds();
 //                calculateFps(deltaTime);
@@ -149,17 +153,71 @@ int startGame()
     return 0;
 }
 
+static void getInput()
+{
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+            case SDL_KEYDOWN:
+                if (event.key.keysym.sym == SDLK_w)
+                {
+                    goUp = true;
+                }
+                if (event.key.keysym.sym == SDLK_a)
+                {
+                    goLeft = true;
+                }
+                if (event.key.keysym.sym == SDLK_s)
+                {
+                    goDown = true;
+                }
+                if (event.key.keysym.sym == SDLK_d)
+                {
+                    goRight = true;
+                }
+                break;
+            case SDL_KEYUP:
+                if (event.key.keysym.sym == SDLK_w)
+                {
+                    goUp = false;
+                }
+                if (event.key.keysym.sym == SDLK_a)
+                {
+                    goLeft = false;
+                }
+                if (event.key.keysym.sym == SDLK_s)
+                {
+                    goDown = false;
+                }
+                if (event.key.keysym.sym == SDLK_d)
+                {
+                    goRight = false;
+                }
+                if (event.key.keysym.sym == SDLK_SPACE)
+                {
+                    fire();
+                }
+                break;
+            case SDL_QUIT:
+                done = SDL_TRUE;
+                break;
+        }
+    }
+}
+
 void start()
 {
-    printf("start\n");
+//    printf("start\n");
 }
 
 void play()
 {
-    printf("play\n");
+//    printf("play\n");
 }
 
 void gameOver()
 {
-    printf("gameOver\n");
+//    printf("gameOver\n");
 }

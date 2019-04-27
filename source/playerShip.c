@@ -4,20 +4,13 @@
 #include "laserBeam.h"
 
 static GameObject playerShip;
-static bool goUp;
-static bool goLeft;
-static bool goDown;
-static bool goRight;
 
-static void getInput();
 static void setInput(float deltaTime);
 
 const float FIRE_RATE = 0.2;
 static float fireRateTimer = 0;
 
 static int hitPoint = 100;
-
-static void fire();
 
 void initPlayerShip(SDL_Renderer* renderer)
 {
@@ -35,7 +28,6 @@ void initPlayerShip(SDL_Renderer* renderer)
 
 void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
 {
-    getInput();
     setInput(deltaTime);
     drawImage(renderer, &playerShip);
     drawCollider(renderer, playerShip);
@@ -57,7 +49,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     }
 }
 
-static void fire()
+void fire()
 {
     Vector2 posLeft, posRight;
     posLeft.x = playerShip.position.x - 40;
@@ -75,60 +67,6 @@ int getPlayerShipHitPoint()
 GameObject* getPlayerShip()
 {
     return &playerShip;
-}
-
-static void getInput()
-{
-    SDL_Event event;
-    while (SDL_PollEvent(&event))
-    {
-        switch (event.type)
-        {
-            case SDL_KEYDOWN:
-                if (event.key.keysym.sym == SDLK_w)
-                {
-                    goUp = true;
-                }
-                if (event.key.keysym.sym == SDLK_a)
-                {
-                    goLeft = true;
-                }
-                if (event.key.keysym.sym == SDLK_s)
-                {
-                    goDown = true;
-                }
-                if (event.key.keysym.sym == SDLK_d)
-                {
-                    goRight = true;
-                }
-                break;
-            case SDL_KEYUP:
-                if (event.key.keysym.sym == SDLK_w)
-                {
-                    goUp = false;
-                }
-                if (event.key.keysym.sym == SDLK_a)
-                {
-                    goLeft = false;
-                }
-                if (event.key.keysym.sym == SDLK_s)
-                {
-                    goDown = false;
-                }
-                if (event.key.keysym.sym == SDLK_d)
-                {
-                    goRight = false;
-                }
-                if (event.key.keysym.sym == SDLK_SPACE)
-                {
-                    fire();
-                }
-                break;
-            case SDL_QUIT:
-                done = SDL_TRUE;
-                break;
-        }
-    }
 }
 
 static void setInput(float deltaTime)
