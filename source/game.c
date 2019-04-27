@@ -18,7 +18,7 @@ SDL_Renderer* renderer;
 
 static void getInput();
 void start();
-void play();
+void play(float);
 void gameOver();
 
 int startGame()
@@ -67,37 +67,23 @@ int startGame()
                 float deltaTime = getDeltaTimeInSeconds();
 //                calculateFps(deltaTime);
                 
+                // Background
+                updateBg(renderer, deltaTime);
+                
                 switch (gameState)
                 {
                     case START:
                         start();
                         break;
                     case PLAY:
-                        play();
+                        play(deltaTime);
                         break;
                     case GAME_OVER:
                         gameOver();
                         break;
                 }
                 
-                // Background
-                updateBg(renderer, deltaTime);
                 
-                // Update enemy ships
-                updateEnemyShips(renderer, deltaTime);
-                
-                // Update laser beams
-                updateLaserBeam(renderer, deltaTime);
-                
-                // Update player ship
-                updatePlayerShip(renderer, deltaTime);
-                
-                // Update enemy controller
-                updateEnemyController(deltaTime);
-                
-                // Text on the top left corner
-//                SDL_RenderCopy(renderer, texture, NULL, &textRect);
-                updateBasicUI(renderer);
                 
                 // Set background color
                 SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
@@ -209,15 +195,29 @@ static void getInput()
 
 void start()
 {
-//    printf("start\n");
+    
 }
 
-void play()
+void play(float deltaTime)
 {
-//    printf("play\n");
+    // Update enemy ships
+    updateEnemyShips(renderer, deltaTime);
+    
+    // Update laser beams
+    updateLaserBeam(renderer, deltaTime);
+    
+    // Update player ship
+    updatePlayerShip(renderer, deltaTime);
+    
+    // Update enemy controller
+    updateEnemyController(deltaTime);
+    
+    // Text on the top left corner
+    //                SDL_RenderCopy(renderer, texture, NULL, &textRect);
+    updateBasicUI(renderer);
 }
 
 void gameOver()
 {
-//    printf("gameOver\n");
+    
 }
