@@ -41,10 +41,12 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     
     if (playerShip.hasCollision)
     {
-        hitPoint--;
-        if (hitPoint == 0)
+        hitPoint -= 10;
+        if (hitPoint <= 0)
         {
+            hitPoint = 0;
             // End game
+            endGame();
         }
     }
 }

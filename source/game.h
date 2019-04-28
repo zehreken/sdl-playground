@@ -9,5 +9,6 @@ SDL_bool done;
 // Methods
 int startGame();
 void updateGame();
+void endGame();
 
 #endif

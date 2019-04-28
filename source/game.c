@@ -185,7 +185,22 @@ static void getInput()
                 {
                     fire();
                 }
-                else
+                if (event.key.keysym.sym == SDLK_q)
+                {
+                    switch (gameState)
+                    {
+                        case START:
+                            gameState = PLAY;
+                            break;
+                        case PLAY:
+                            gameState = GAME_OVER;
+                            break;
+                        case GAME_OVER:
+                            gameState = START;
+                            break;
+                    }
+                }
+                if (event.key.keysym.sym == SDLK_o)
                 {
                     if (gameState == START || gameState == GAME_OVER)
                     {
@@ -199,6 +214,11 @@ static void getInput()
                 break;
         }
     }
+}
+
+void endGame()
+{
+    gameState = GAME_OVER;
 }
 
 void start()
