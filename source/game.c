@@ -94,12 +94,6 @@ int startGame()
                 // Clears everything, I still don't understand how this works
                 SDL_RenderClear(renderer);
                 
-//                solvePhysics(boxes, BOX_SIZE);
-//                solvePhysicsGame(gameObjects, LASER_COUNT);
-                solvePhysicsGame(getLaserBeams(), 20, getEnemyShips(), 20);
-                solvePhysicsGame(getEnemyLaserBeams(), 20, getPlayerShip(), 1);
-//                solvePhysicsGame(getEnemyShips(), 20, getPlayerShip(), 1);
-                
                 SDL_Delay(10);
                 
 //                if (timePerFrame < 0.0166666)
@@ -242,6 +236,12 @@ void play(float deltaTime)
     
     // In game UI
     drawPlayUI(renderer);
+    
+    //                solvePhysics(boxes, BOX_SIZE);
+    //                solvePhysicsGame(gameObjects, LASER_COUNT);
+    solvePhysicsGame(getLaserBeams(), 20, getEnemyShips(), 20);
+    solvePhysicsGame(getEnemyLaserBeams(), 20, getPlayerShip(), 1);
+    //                solvePhysicsGame(getEnemyShips(), 20, getPlayerShip(), 1);
 }
 
 void gameOver()
