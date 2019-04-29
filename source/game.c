@@ -12,6 +12,7 @@
 #include "enemyShips.h"
 #include "enemyController.h"
 #include "basicUI.h"
+#include "scoreController.h"
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -137,6 +138,8 @@ static void game_reset()
 {
     playerShip_reset();
     enemyShips_reset();
+    scoreController_reset();
+    laserBeam_reset();
 }
 
 static void getInput()

@@ -5,6 +5,7 @@
 #include "gameObject.h"
 
 void initLaserBeam(SDL_Renderer* renderer);
+void laserBeam_reset();
 void fireLaserBeam(Vector2 position, bool isEnemy);
 void updateLaserBeam(SDL_Renderer* renderer, float deltaTime);
 GameObject* getLaserBeams();

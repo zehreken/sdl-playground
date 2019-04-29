@@ -8,6 +8,11 @@ void initScoreController()
     score = 0;
 }
 
+void scoreController_reset()
+{
+    score = 0;
+}
+
 void addScore(int value)
 {
     score += value;

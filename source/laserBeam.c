@@ -19,6 +19,18 @@ void initLaserBeam(SDL_Renderer* renderer)
     }
 }
 
+void laserBeam_reset()
+{
+    for (int i = 0; i < LASER_BEAM_SIZE; i++)
+    {
+        laserBeamActive[i] = false;
+        laserBeams[i].position.x = laserBeams[i].position.y = -100;
+        
+        enemyLaserBeamActive[i] = false;
+        enemyLaserBeams[i].position.x = enemyLaserBeams[i].position.y = -100;
+    }
+}
+
 void fireLaserBeam(Vector2 position, bool isEnemy)
 {
     for (int i = 0; i < LASER_BEAM_SIZE; i++)
