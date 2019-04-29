@@ -20,6 +20,16 @@ void initEnemyShips(SDL_Renderer* renderer)
     }
 }
 
+void enemyShips_reset()
+{
+    for (int i = 0; i < ENEMY_SIZE; i++)
+    {
+        enemyShips[i].position.x = 50 + i * 100;
+        enemyShips[i].position.y = -100;
+        enemyShipActive[i] = true;
+    }
+}
+
 void spawnEnemyShip(Vector2 position)
 {
     for (int i = 0; i < ENEMY_SIZE; i++)

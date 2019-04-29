@@ -26,6 +26,13 @@ void initPlayerShip(SDL_Renderer* renderer)
     playerShip.boxSize.y *= 0.3;
 }
 
+void playerShip_reset()
+{
+    playerShip.position.x = 400;
+    playerShip.position.y = 300;
+    hitPoint = 100;
+}
+
 void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
 {
     setInput(deltaTime);
@@ -41,7 +48,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     
     if (playerShip.hasCollision)
     {
-        hitPoint -= 10;
+        hitPoint -= 30;
         if (hitPoint <= 0)
         {
             hitPoint = 0;

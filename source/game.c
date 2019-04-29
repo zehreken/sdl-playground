@@ -133,6 +133,12 @@ int startGame()
     return 0;
 }
 
+static void game_reset()
+{
+    playerShip_reset();
+    enemyShips_reset();
+}
+
 static void getInput()
 {
     SDL_Event event;
@@ -181,6 +187,7 @@ static void getInput()
                 }
                 if (event.key.keysym.sym == SDLK_q)
                 {
+                    return;
                     switch (gameState)
                     {
                         case START:
@@ -199,6 +206,7 @@ static void getInput()
                     if (gameState == START || gameState == GAME_OVER)
                     {
                         // Reset game
+                        game_reset();
                         gameState = PLAY;
                     }
                 }

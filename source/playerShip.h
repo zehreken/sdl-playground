@@ -9,6 +9,7 @@ bool goDown;
 bool goRight;
 
 void initPlayerShip(SDL_Renderer* renderer);
+void playerShip_reset();
 void updatePlayerShip(SDL_Renderer* renderer, float deltaTime);
 int getPlayerShipHitPoint();
 GameObject* getPlayerShip();
