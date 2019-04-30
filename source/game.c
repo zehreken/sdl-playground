@@ -13,6 +13,7 @@
 #include "enemyController.h"
 #include "basicUI.h"
 #include "scoreController.h"
+#include "audioController.h"
 
 SDL_Window* window;
 SDL_Renderer* renderer;
@@ -39,6 +40,9 @@ int startGame()
             int IMG_Flag = 0;
             if (IMG_Init(IMG_Flag) == -1)
                 printf("IMG_Init error");
+            
+            // Init audio controller
+            audioController_init();
             
             // Init basic UI
             initBasicUI(renderer);
@@ -128,6 +132,7 @@ int startGame()
         }
     }
     
+    audioController_close();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
@@ -209,6 +214,7 @@ static void getInput()
                     if (gameState == START || gameState == GAME_OVER)
                     {
                         // Reset game
+                        audioController_play(0);
                         game_reset();
                         gameState = PLAY;
                     }

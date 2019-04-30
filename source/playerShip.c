@@ -2,6 +2,7 @@
 #include "constants.h"
 #include "game.h"
 #include "laserBeam.h"
+#include "audioController.h"
 
 static GameObject playerShip;
 
@@ -44,6 +45,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
     {
         fireRateTimer = 0;
         fire();
+        audioController_play(1);
     }
     
     if (playerShip.hasCollision)
@@ -54,6 +56,7 @@ void updatePlayerShip(SDL_Renderer* renderer, float deltaTime)
             hitPoint = 0;
             // End game
             endGame();
+            audioController_play(2);
         }
     }
 }

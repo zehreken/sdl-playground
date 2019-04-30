@@ -80,6 +80,12 @@
       location = "group:source/Makefile">
    </FileRef>
    <FileRef
+      location = "group:source/audioController.h">
+   </FileRef>
+   <FileRef
+      location = "group:source/audioController.c">
+   </FileRef>
+   <FileRef
       location = "group:source/miniBus.c">
    </FileRef>
    <FileRef
