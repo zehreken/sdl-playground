@@ -1,6 +1,7 @@
 #include "audioController.h"
 #include "SDL2_mixer/SDL_mixer.h"
 
+static Mix_Music *music = NULL;
 static Mix_Chunk *start = NULL;
 static Mix_Chunk *laser = NULL;
 static Mix_Chunk *lose = NULL;
@@ -11,6 +12,13 @@ void audioController_init()
     {
         printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
     }
+    
+    music = Mix_LoadMUS("assets/start.wav");
+    if (music == NULL)
+    {
+        printf("Failed to load music! SDL_mixer Error: %s\n", Mix_GetError());
+    }
+    Mix_PlayMusic(music, -1);
     
     start = Mix_LoadWAV("assets/start.wav");
     if (start == NULL)
@@ -49,6 +57,7 @@ void audioController_play(int id)
 
 void audioController_close()
 {
+    Mix_FreeMusic(music);
     Mix_FreeChunk(start);
     Mix_FreeChunk(laser);
     Mix_FreeChunk(lose);
