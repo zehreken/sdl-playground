@@ -26,7 +26,7 @@ static float updateTimer = UI_UPDATE_PERIOD;
 
 void initBasicUI(SDL_Renderer* renderer)
 {
-    font = TTF_OpenFont("fonts/emulogic.ttf", 20);
+    font = TTF_OpenFont("fonts/emulogic.ttf", 24);
     if (!font)
         printf("Font loading error");
 }
